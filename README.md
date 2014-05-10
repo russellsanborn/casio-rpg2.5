@@ -1,7 +1,7 @@
 casio-rpg2.5
 ============
 
-Casio Calculate RPG Game
+Casio Calculator RPG Game
 
 Myself (Russell Sanborn) and my friend, Nick Perry created this game with our High School Issues 10th grade trigonometry class casio calculators (1998). We modeled it after a current game called RPG. 
 
