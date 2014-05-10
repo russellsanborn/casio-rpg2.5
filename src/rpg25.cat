@@ -1,0 +1,2236 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:4809
+File Name:TOWN
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Lbl 0
+\ClrText
+\Locate 1,1,"\Dms[ITEM]\Dms\Dms\Dms\Dms\Dms\Dms[     ]\Dms"
+\Locate 1,2,"\Dms[SHOP]\Dms\Dms\Dms\Dms\Dms\Dms[ INN ]\Dms"
+\Locate 1,3,"\Dms--- ---------- ----\Dms"
+\Locate 1,5,"\Dms---- --------- ----\Dms"
+\Locate 1,6,"\Dms[MAGIC ]\Dms\Dms\Dms[WEAPON]\Dms"
+\Locate 1,7,"\Dms[ SHOP ]\Dms\Dms\Dms[ SHOP ]\Dms"
+\Locate 1,4,"\Dms"
+\Stop
+20\->G
+4\->H
+1\->V
+500\->A
+\While V=1
+\Locate G,H,"O"
+\If \Getkey=38\ And G>2
+\Then \Locate G,H," "
+G-1\->G
+\IfEnd
+\If \Getkey=27
+\Then \Locate G,H," "
+G+1\->G
+\IfEnd
+\If G=21
+\Then 2\->V
+\IfEnd
+\If \Getkey=28\ And G=5
+\Then \ClrText
+\Locate 1,1,"---------------------"
+\Locate 1,2,"I     ITEM SHOP     I"
+\Locate 1,3,"---------------------"
+\Locate 3,4,"BUY"
+\Locate 3,5,"SELL"
+\Locate 3,6,"EXIT"
+2\->D
+4\->C
+1\->X
+\While X=1
+3=C\=>6\->C
+7=C\=>4\->C
+\Locate D,C,"\->"
+\If \Getkey=37
+\Then \Locate D,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate D,C," "
+\Dsz C
+\IfEnd
+\If \Getkey=31\ And C=6
+\Then 2\->X
+600\->A
+\IfEnd
+\If \Getkey=31\ And C=5
+\Then \Prog "ID"
+\IfEnd
+1\->C
+\While \Getkey\<>47\ And \Getkey\<>31
+C=0\=>7\->C
+C=8\=>1\->C
+\Locate 1,C,"\->"
+\If \Getkey=37
+\Then \Locate 1,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 1,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\Getkey=47\=>0\->C
+C\<>0\=>\List 6[C]\<>0\=>F+1\->F
+C\<>0\=>\List 6[C]\<>0\=>0\->\List 6[C]
+\ClrText
+4\->C
+\Locate 1,1,"---------------------"
+\Locate 1,2,"I     ITEM SHOP     I"
+\Locate 1,3,"---------------------"
+\Locate 3,4,"BUY"
+\Locate 3,5,"SELL"
+\Locate 3,6,"EXIT"
+\IfEnd
+\If \Getkey=31\ And C=4
+\Then \Int (5*\Ran#+1)\->I
+\Locate 1,2,"BUY THIS "
+I=1\=>\Locate 10,2,"POISON?     "
+I=2\=>\Locate 10,2,"FOOD?       "
+I=3\=>\Locate 10,2,"MEDICINE?   "
+I=4\=>\Locate 10,2,"MAGIC BOOK? "
+I=5\=>6\->I
+I=6\=>\Locate 10,2,"FISHING POLE?"
+\Locate 2,4,"    "
+\Locate 2,5,"YES  "
+\Locate 2,6,"NO   "
+5\->C
+\While \Getkey\<>31
+C=7\=>5\->C
+C=4\=>6\->C
+\Locate 1,C,"\->"
+\If \Getkey=28
+\Then \Locate 1,C," "
+\Isz C
+\IfEnd
+\If \Getkey=37
+\Then \Locate 1,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+1\->A
+\While \List 6[A]\<>0\ And A\<>7
+A+1\->A
+\WhileEnd
+\If C=5\ And F<100*I
+\Then \Locate 3,7," NOT ENOUGH GOLD"
+\For 1\->A \To 150
+\Next 
+\Locate 3,7,"               "
+\IfEnd
+F\>=100*I\=>C=5\=>\List 6[A]=0\=>I\->\List 6[A]
+F\>=100*I\=>C=5\=>F-100*I\->F
+\Locate 1,2,"I     ITEM SHOP     I"
+\Locate 1,4,"  BUY                "
+\Locate 1,5,"  SELL               "
+\Locate 1,6,"  EXIT               "
+\IfEnd
+\WhileEnd
+\ClrText
+\IfEnd
+\If \Getkey=37\ And G=6
+\Then \ClrText
+\Locate 1,1,"---------------------"
+\Locate 1,2,"I    MAGIC SHOP     I"
+\Locate 1,3,"---------------------"
+\Locate 3,4,"BUY"
+\Locate 3,5,"EXIT"
+2\->D
+4\->C
+1\->X
+\While X=1
+\While \Getkey\<>31
+3=C\=>5\->C
+6=C\=>4\->C
+\Locate D,C,"\->"
+\If \Getkey=37
+\Then \Locate D,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate D,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\If C=4
+\Then \Locate 3,4,"ATTACK 1000 G.P."
+\Locate 3,3,"CURE 1000 G.P."
+\While \Getkey\<>31\ And \Getkey\<>47
+C=3\=>5\->C
+C=6\=>4\->C
+\Locate 2,C,"\->"
+\If \Getkey=37
+\Then \Locate 2,C," "
+C+1\->C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 2,C," "
+C-1\->C
+\IfEnd
+\WhileEnd
+\Getkey=47\=>\Locate 2,C," "
+\Getkey=47\=>1\->C
+\If (C=5\ Or C=4)\ And F<1000
+\Then \Locate 3,C,"NOT ENOUGH GOLD"
+\For 1\->A \To 150
+\Next 
+\IfEnd
+\If C=4\ And F\>=1000\ And \List 6[12]=0
+\Then \Locate 2,C," "
+F-1000\->F
+1\->\List 6[12]
+\IfEnd
+\If C=5\ And F\>=1000\ And \List 6[11]=0
+\Then \Locate 2,C," "
+F-1000\->F
+1\->\List 6[11]
+\IfEnd
+\Locate 2,4," BUY               "
+\Locate 2,5," SELL              "
+4\->C
+\IfEnd
+\If C=5
+\Then 2\->X
+600\->A
+\IfEnd
+\WhileEnd
+\ClrText
+\IfEnd
+\If \Getkey=37\ And G=16
+\Then \ClrText
+\Locate 1,1,"---------------------"
+\Locate 1,2,"I    WEAPON SHOP    I"
+\Locate 1,3,"---------------------"
+\Locate 3,4,"BUY"
+\Locate 3,5,"SELL"
+Lcoate3,6,"EXIT"
+2\->D
+4\->C
+1\->X
+\While X=1
+3=C\=>6\->C
+7=C\=>4\->C
+\Locate D,C,"\->"
+\If \Getkey=37
+\Then \Locate D,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate D,C," "
+\Dsz C
+\IfEnd
+\If \Getkey=31\ And C=4
+\Then \Locate 3,4,"   "
+\Locate 3,5,"    "
+\Locate 3,6,"    "
+\Int (4\Ran#+2)\->I
+\Int (3\Ran#+1)\->B
+(B/4)\->B
+I=2\=>\Locate 3,4,"CLUB"
+I=3\=>\Locate 3,4,"SPEAR"
+I=4\=>\Locate 3,4,"SHORT SWORD"
+I=5\=>\Locate 3,4,"LONG SWORD"
+B=.75\=>\Locate 3,5,"LEATHER ARMOR"
+B=.5\=>\Locate 3,5,"CHAIN MAIL"
+B=.25\=>\Locate 3,5,"PLATE MAIL"
+\Locate 14,4,I*100
+\Locate 18,4,"G.P."
+\Locate 6,6,100000-(100000*B)
+\Locate 12,6,"G.P."
+\While \Getkey\<>31\ And \Getkey\<>47
+C=3\=>5\->C
+C=6\=>4\->C
+\Locate 2,C,"\->"
+\If \Getkey=37
+\Then \Locate 2,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 2,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\Locate 2,C," "
+\Getkey=47\=>1-C
+\If (F<100*I\ And C=40\ Or (F<100000-100000*B\ And C=5)
+\Then \Locate 3,C,"NOT ENOUGH GOLD    "
+\For 1\->C \To 500
+\Next 
+\IfEnd
+\If F\>=100*I\ And C=4\ And \List 6[8]=1
+\Then F-100*I\->F
+I\->\List 6[8]
+\IfEnd
+\If F\>=100000-100000xB\ And C=5\ And \List 6[9]=1
+\Then B\->\List 6[9]
+F-(100000-100000xB)\->F
+\IfEnd
+\Locate 3,4,"BUY               "
+\Locate 3,5,"SELL              "
+\Locate 3,6,"EXIT              "
+\Locate 1,1,"---------------------"
+4\->C
+\IfEnd
+\If \Getkey=31\ And C=5
+\Then \List 6[9]=.75\=>\Locate 3,5,"LEATHER ARMOR"
+\List 6[9]=.5\=>\Locate 3,5,"CHAIN MAIL"
+\List 6[9]=.25\=>\Locate 3,5,"PLATE MAIL"
+\List 6[9]=0\=>\Locate 3,5,"ENCHANTED ARMOR"
+\List 6[8]=2\=>\Locate 3,4,"CLUB"
+\List 6[8]=3\=>\Locate 3,4,"SPEAR"
+\List 6[8]=4\=>\Locate 3,4,"SHORT SWORD"
+\List 6[8]=5\=>\Locate 3,4,"LONG SWORD"
+\List 6[8]=50\=>\Locate 3,4,"LEACH SABRE"
+\List 6[8]=1000\=>\Locate 3,4,"MEGA-MACE"
+\List 6[8]=1\=>\Locate 3,4,"        "
+\List 6[9]=1\=>\Locate 3,5,"        "
+\Locate 3,6,"    "
+\While \Getkey\<>47\ And \Getkey\<>31
+C=3\=>5\->C
+C=6\=>4\->C
+\Locate 2,C,"\->"
+\If \Getkey=37
+\Then \Locate 2,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 2,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\Locate 2,C," "
+\Getkey=47\=>1\->C
+C=4\ Or C=5\=>\List 6[C+4]\<>1\=>F+1\->F
+C=4\ Or C=5\=>\List 6[C+4]\<>1\=>1\->\List 6[C+4]
+\Locate 3,4,"BUY               "
+\Locate 3,5,"SELL              "
+\Locate 3,6,"EXIT              "
+\Locate 1,1,"---------------------"
+4\->C
+\IfEnd
+\If \Getkey=31\ And C=6
+\Then 2\->X
+600\->A
+\IfEnd
+\WhileEnd
+\ClrText
+\IfEnd
+\If \Getkey=28\ And G=16
+\Then \ClrText
+\Locate 1,1,"---------------------"
+\Locate 1,2,"I        INN        I"
+\Locate 1,3,"---------------------"
+\Locate 3,4,"REST"
+\Locate 3,5,"EXIT"
+2\->D
+4\->C
+1\->X
+\While X=1
+3=C\=>5\->C
+6=C\=>4\->C
+\Locate D,C,"\->"
+\If \Getkey=37
+\Then \Locate D,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate D,C," "
+\Dsz C
+\IfEnd
+\If \Getkey=31\ And C=5
+\Then 2\->X
+600\->A
+\IfEnd
+\If C=4\ And F<100\ And \Getkey=31
+\Then \Locate 3,C,"NOT ENOUGH GOLD"
+\For 1\->A \To 150
+\Next 
+\Locate 3,C,"REST           "
+\IfEnd
+\If F\>=100\ And \Getkey=31\ And C=4
+\Then \Locate 1,6,"---------------------"
+\Locate 1,7,"I                   I"
+\Locate 14,4,"MONTHS"
+\Locate 14,5,"PASS"
+\For 2\->A \To 20
+\Locate A,7,"*"
+\For 1\->B \To 50
+\Next 
+\Next 
+\Locate 1,6,"                     "
+\Locate 1,7,"                     "
+\Locate 14,4,"        "
+\Locate 14,5,"        "
+F\>=100\=>P+1000\->P
+F\>=100\=>F-100\->F
+\IfEnd
+\WhileEnd
+\ClrText
+\IfEnd
+\If A=600
+\Then \Locate 1,1,"\Dms[ITEM]\Dms\Dms\Dms\Dms\Dms\Dms[     ]\Dms"
+\Locate 1,2,"\Dms[SHOP]\Dms\Dms\Dms\Dms\Dms\Dms[ INN ]\Dms
+\Locate 1,3,"\Dms-----------------\Dms"
+\Locate 1,4,"\Dms"
+\Locate 1,5,"\Dms-----------------\Dms"
+\Locate 1,6,"\Dms[MAGIC]\Dms\Dms\Dms[WEAPON]\Dms"
+\Locate 1,7,"\Dms[SHOP]\Dms\Dms\Dms[SHOP]\Dms"
+500\->A
+\IfEnd
+\WhileEnd
+2\->G
+4\->H
+700\->A
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:3314
+File Name:MAP
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+2\->G
+4\->H
+\For 1\->A \To 7
+\Locate 1,A,"\Dms^^^^^^^^^^^(~~~~~~~~"
+\Next 
+\Locate 2,1,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\Locate 1,4,"^"
+\Locate 2,7,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+1\->V
+500\->A
+\While V=1
+\Locate G,H,"O"
+\If \Getkey=27\ And G<12
+\Then \Locate G,H,"^"
+G+1\->G
+\IfEnd
+\If \Getkey=38\ And G>2
+\Then \Locate G,H,"^"
+G-1\->G
+\IfEnd
+\If \Getkey=37\ And H<6
+\Then \Locate G,H,"^"
+H+1\->H
+\IfEnd
+\If \Getkey=28\ And H>2
+\Then \Locate G,H,"^"
+H-1\->H
+\IfEnd
+\If \Getkey=38\ And G=2\ And H=4
+\Then 2\->V
+\IfEnd
+1\->A
+\While \List 6[A]\<>7\ And A\<>7
+A+1\->A
+\WhileEnd
+\If \Getkey=31\ And G=12\ And \List 6[A]=7
+\Then \Locate 12,H,"^"
+\Locate 13,H,"O"
+\For 1\->A \To 20
+\Next 
+\Locate 13,H,"(O"
+\For 1\->A \To 20
+\Next 
+\For 14\->A \To 20
+\Locate A,H,"~O"
+\For 1\->B \To 20
+\Next 
+\Next 
+\ClrText
+\Locate 1,1,"ACROSS THE LAKE YOU"
+\Locate 1,2,"FIND A CITY FILLED"
+\Locate 1,3,"WITH WONDERS."
+\For 1\->A \To 650
+\Next 
+\ClrText
+\Locate 1,1,"DUE TO MEMORY"
+\Locate 1,2,"CONSTRAINTS WE COULD"
+\Locate 1,3,"NOT SHOW YOU THE"
+\Locate 1,4,"CITY."
+\For 1\->A \To 650
+\Next 
+\ClrText
+\Locate 1,1,"YOU TRACK THE ANCIENT"
+\Locate 1,2,"FOR YEARS, FINALLY"
+\Locate 1,3,"YOU FIND HIM."
+\For 1\->A \To 650
+\Next 
+\Locate 1,1,"[H.P.=       HIT    ]"
+\Locate 1,2,"[M.P.=       MAGIC  ]"
+\Locate 1,3,"[LEVEL=      ITEM   ]"
+\Locate 1,4,"[ENEMY=      RUN    ]"
+\Locate 1,5,"^-------------------^"
+\Locate 2,7,"O"
+\Locate 20,7,"A"
+Lx11000\->Q
+\Locate 7,1,P
+\Locate 7,2,M
+\Locate 8,3,L
+\Locate 8,4,Q
+1\->C
+\While \Getkey\<>31
+C=5\=>1\->C
+C=0\=>4\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+1\->A
+\While A<8\ And \List 6[A]\<>4
+A+1\->A
+\WhileEnd
+\If C=2\ And \List 6[A]=4
+\Then \Locate 14,1,"   "
+\Locate 14,2,"     "
+\Locate 14,3,"    "
+\Locate 14,4,"   "
+\List 6[12]=1\=>\Locate 14,2,"ATTACK"
+\List 6[11]=1\=>\Locate 14,3,"CURE"
+\List 6[10]=1\=>\Locate 14,4,"NUKE"
+\While \Getkey\<>31
+C=5\=>2\->C
+C=1\=>4\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\If C=4\ And \List 6[10]=1
+\Then \Locate 8,6,"NUKE-HIM"
+0\->Q
+L<500\=>1\->P
+\For 1\->A \To 150
+\Next 
+\Locate 8,6,"        "
+\For 2\->A \To 18
+\Locate A,6," ."
+\Next 
+\Locate 19,7,")("
+\Locate 18,6,"(~~)"
+\IfEnd
+\Locate 14,1,"HIT"
+\Locate 14,2,"MAGIC "
+\Locate 14,3,"ITEM"
+\Locate 14,4,"RUN "
+2\->C
+\IfEnd
+\If C=3
+\Then \Locate 14,1,"   "
+\Locate 14,2,"     "
+\Locate 14,3,"    "
+\Locate 14,4,"   "
+1\->A
+\While A<8\ And \List 6[A]\<>1
+A+1\->A
+\WhileEnd
+1\->B
+\While B<8\ And \List 6[B]\<>3
+B+1\->B
+\WhileEnd
+\List 6[A]=1\=>\Locate 14,2,"POISON"
+\List 6[B]=3\=>\Locate 14,3,"MEDICINE"
+\While \Getkey\<>31
+C=4\=>2\->C
+C=1\=>3\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\IfEnd
+\If C=4
+\Then \Locate 5,6,"COULDN'T RUN"
+\For 1\->A \To 100
+\Next 
+\Locate 5,6,"            "
+\IfEnd
+\If C=1
+\Then \List 6[8]\->W
+W\<>1000\ Or L=100\=>Q-(11*L*W)\->Q
+W=50\=>P+(550*L)\->P
+\If W=1000
+\Then \Locate 3,6,"I\theta"
+\For 4\->A \To 19
+\Locate A,6,"\theta"
+\Next 
+\For 1\->A \To 200
+\Next 
+\Locate 20,6," "
+\Locate 30,7,"\theta"
+\For 1\->A \To 200
+\Next 
+\Locate 20,6,"\theta"
+\Locate 20,7,"A"
+\For 19\->A \To 4 \Step -1
+\Locate A,6,"\theta "
+\Next 
+\Locate 3,6,"   "
+\IfEnd
+\Locate 19,7,"XXX"
+\Locate 19,7,"XXX"
+\Locate 19,7," A "
+\IfEnd
+1\->C
+\Locate 7,1,"      \->"
+\Locate 7,2,"       "
+\Locate 8,3,"      "
+\Locate 8,4,"      "
+\Locate 7,1,P
+\Locate 7,2,M
+\Locate 8,3,L
+\Locate 8,4,Q
+\If Q>0
+\Then \For 1\->A \To 500
+\Next 
+\For 19\->A \To 3 \Step -1
+\Locate A,6,". "
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 2,7,")("
+\Locate 1,6,"(~~)"
+\Stop
+\IfEnd
+1\->\List 6[10]
+\ClrText
+\Locate 1,1,"ON HIS CORPSE YOU"
+\Locate 1,2,"FIND AN ANCIENT"
+\Locate 1,3,"PARCHMENT CONTAINING"
+\Locate 1,4,"THE SECRET TO THE"
+\Locate 1,5,"NUKE, WHICH YOU COPY"
+\Locate 1,6,"DOWN."
+\For 1\->A \To 2000
+\Next 
+\ClrText
+\Locate 1,1,"A CURIOUS THING"
+\Locate 1,2,"HAPPENS. THE"
+\Locate 1,3,"PARCHMENT VANISHES AS"
+\Locate 1,4,"IF SPIRITED AWAT BY"
+\Locate 1,5,"MAGIC..."
+\For 1\->A \To 1000
+\Next 
+\For 1\->A \To 7
+\Locate 1,A,"\Dms^^^^^^^^^^^(~~~~~~~~"
+\Next 
+\Locate 1,4,"^"
+\Locate 2,1,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\Locate 2,7,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\Locate 21,H,"O"
+\For 20\->G \To 13 \Step -1
+\For 1\->A \To 50
+\Next 
+\Locate G,H,"O~"
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 12,H,"O("
+12\->G
+\IfEnd
+1\->A
+\While \List 6[A]\<>6\ And A\<>7
+A+1\->A
+\WhileEnd
+\If \Getkey=31\ And G=11\ And \List 6[A]=6
+\Then \Locate G+1,H,"---"
+\Int (\Ran#*5)\->\theta
+\For 5\->A \To 6+\theta
+\Locate G+A,H,"-"
+\Next 
+\Locate G+A,H+1,"J"
+G+A=18\=>H=3\=>\Locate 2,4,"YOU FOUND THE LEACH"
+G+A=18\=>H=3\=>\Locate 2,5,"SABER."
+\For 1\->B \To 500
+\Next 
+G+A=18\=>H=3\=>\Locate 2,4,"^^^^^^^^^^^(~~~~J~~~"
+G+A=18\=>H=3\=>\Locate 2,5,"^^^^^"
+G+A=18\=>H=3\=>50\->\List 6[8]
+\Do
+\Int (\Ran#*10)\->\theta
+\For 1\->A \To 500
+\Next 
+\LpWhile \theta\<>3
+\Locate 2,4,"YOU CAUGHT A FISH"
+\For 1\->A \To 150
+\Next 
+1\->A
+\While \List 6[A]\<>0\ And A\<>7
+A+1\->A
+\WhileEnd
+\List 6[A]=0\=>2\->\List 6[A]
+\For 1\->A \To 7
+\Locate 1,A,"\Dms^^^^^^^^^^^(~~~~~~~~"
+\Next 
+\Locate 1,4,"^"
+\Locate 2,1,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\Locate 2,7,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\IfEnd
+\WhileEnd
+20\->G
+4\->H
+700\->A
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:8427
+File Name:RPG
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Lbl Y
+\ClrText
+\For 1\->A \To 6
+\Locate 9,4,"------"
+\Locate 8,5,"--------"
+\Next 
+\For 1\->A \To 11
+\Locate 9,4,"SQUARE"
+\Locate 8,5,"PRESENTS"
+\Next 
+\ClrText
+\For 1\->A \To 8
+\Locate 8,1,"*** ***"
+\Locate 8,1,"~~~ ~~~"
+\Next 
+\For 1\->A \To 5
+\Locate 8,1,"RPG 2.5"
+\Next 
+\For 1\->A \To 8
+\Locate 7,2,"****** **"
+\Locate 7,2,"~~~~~~ ~~"
+\Next 
+\For 1\->A \To 5
+\Locate 7,2,"EDITED BY"
+\Next 
+\For 1\->A \To 8
+\Locate 4,4,"~~~~~~~ ~~~~~~~"
+\Locate 4,4,"******* *******"
+\Next 
+\For 1\->A \To 5
+\Locate 4,4,"RUSSELL SANBORN"
+\Next 
+\For 1\->A \To 8
+\Locate 10,5,"~~~"
+\Locate 10,5,"***"
+\Next 
+\For 1\->A \To 5
+\Locate 9,5,"\ And "
+\Next 
+\For 1\->A \To 8
+\Locate 6,6,"~~~~ ~~~~~"
+\Locate 6,6,"**** *****"
+\Next 
+\For 1\->A \To 5
+\Locate 6,6,"NICK PERRY"
+\Next 
+\For 1\->A \To 8
+\Locate 6,7,"***** *****"
+\Locate 6,7,"~~~~~ ~~~~~"
+\Next 
+\While \Getkey\<>31
+\Locate 6,7,"PRESS [EXE]"
+\WhileEnd
+0\->K
+\ClrText
+\For 1\->A \To 100
+\Next 
+\Getkey=31\=>\GotoW
+\Locate 1,1,"IN THE BEGINING THERE"
+\Locate 1,2,"WAS THE MACE."
+\For 1\->A \To 300
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"AND THE MACE WAS"
+\Locate 1,2,"GOOD."
+\For 1\->A \To 100
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"IT IS SAID THAT THE"
+\Locate 1,2,"MACE COULD VANQUISH"
+\Locate 1,3,"ANY FOE IN A SINGLE"
+\Locate 1,4,"BLOW IF THE WARRIOR"
+\Locate 1,5,"WERE MIGHTY ENOUGH."
+\For 1\->A \To 650
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"THEN THE ENCHANTED"
+\Locate 1,2,"ARMOR WAS FORGED TO"
+\Locate 1,3,"DEFEND AGAINST THE"
+\Locate 1,4,"MACE."
+\For 1\->A \To 500
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"THEN CAME THE NUKE."
+\For 1\->A \To 250
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"AND THE NUKE WAS TOO"
+\Locate 1,2,"GOOD."
+\For 1\->A \To 300
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"THE ANCIENTS WERE"
+\Locate 1,2,"DESTROYED BY THE"
+\Locate 1,3,"NUKE."
+\For 1\->A \To 450
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"A SINGLE ANCIENT HAS"
+\Locate 1,2,"SURVIVED TO THIS DAY."
+\For 1\->A \To 375
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"HE HOLDS THE SECRET"
+\Locate 1,2,"TO THE NUKE."
+\For 1\->A \To 375
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"I CHARGE YOU WITH"
+\Locate 1,2,"RETREAVING THE SECRET"
+\Locate 1,3,"TO THE NUKE."
+\For 1\->A \To 375
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Locate 1,1,"JOURNEY NOW MY"
+\Locate 1,2,"CHAMPION."
+\For 1\->A \To 250
+\Getkey=31\=>\GotoW
+\Next 
+\ClrText
+\Lbl W
+\ClrText
+1\->K
+525\->P
+25\->M
+1\->L
+50\->F
+{4,5,0,0,0,0,0,1,1,0,0,0}\->\List 6
+2\->G
+6\->H
+\Lbl R
+\Int (300\Ran#)+25\->Q
+Q*L\->\theta
+1\->Z
+0\->S
+2\->O
+0\->Y
+\For 1\->A \To 7
+\Locate 1,A,"\Dms^^^^^^^^^^^^^^^^^^^\Dms"
+\Next 
+\Locate 1,1,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms^^\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\Locate 1,4,"^"
+\Locate 21,4,"^"
+\Locate 1,7,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\While Z=1
+\Int 40\Ran#+1\->E
+E=40\=>\Goto1
+\Int 75\Ran#+1\->T
+O=1\=>1\->T
+T=35\=>\Int 21\Ran#+1\->S
+T=35\=>\Int 7\Ran#=1\->Y
+S=1\=>1\->T
+S=21\=>1\->T
+Y=1\=>1\->T
+Y=7\=>1\->T
+T=35\=>\Locate S,T,"*"
+T=35\=>1\->O
+\Locate G,H,"O"
+\If G=5\ And H=Y\ And O=1
+\Then \Int (100\Ran#+1)\->N
+\For 1\->A \To 6
+\Locate 8,1,"HP+75"
+\Locate 8,2,"MP+75"
+\Locate 8,3,"GOLD+"
+\Locate 13,3,N
+\Next 
+M+75\->M
+P+75\->P
+F+N\->F
+\Locate 8,1,"\Dms\Dms\Dms^^\Dms\Dms"
+\Locate 8,2,"^^^^^^^"
+\Locate 8,3,"^^^^^^^^^^^^^\Dms"
+2\->O
+\IfEnd
+\If \Getkey=38\ And G>2
+\Then \Locate G,H,"^"
+G-1\->G
+\IfEnd
+\If \Getkey=38\ And G=2\ And H=4
+\Then \Locate G,H,"^"
+G-1\->G
+\IfEnd
+\If \Getkey=27\ And G<20
+\Then \Locate G,H,"^"
+G+1\->G
+\IfEnd
+\If \Getkey=27\ And G=20\ And H=4
+\Then \Locate G,H,"^"
+G+1\->G
+\IfEnd
+\If \Getkey=28\ And H>2
+\Then \Locate G,H,"^"
+H-1\->H
+\IfEnd
+\If \Getkey=28\ And G=11\ And H=2
+\Then \Locate G,H,"^"
+H-1\->H
+\IfEnd
+\If \Getkey=28\ And G=12\ And H=2
+\Then \Locate G,H,"^"
+H-1\->H
+\IfEnd
+\If \Getkey=37\ And H<6
+\Then \Locate G,H,"^"
+H+1\->H
+\IfEnd
+G=1\=>H=4\=>\Prog "TOWN"
+G=21\=>H=4\=>\Prog "MAP"
+G=11\=>H=1\=>\Prog "CASTLE"
+G=12\=>H=1\=>\Prog "CASTLE"
+\Lbl X
+\If \Getkey=48
+\Then \ClrText
+\Locate 1,1,"---------------------"
+\Locate 1,2,"I NEW GAME  \slash STATS"
+\Locate 21,2,"I"
+\Locate 1,3,"I SAVE GAME \slash ITEMS"
+\Locate 21,3,"I"
+\Locate 1,4,"I LOAD GAME \slash EQUIP"
+\Locate 21,4,"I"
+\Locate 1,5,"I EXIT GAME \slash MAGIC"
+\Locate 21,5,"I"
+\Locate 21,6,"I"
+\Locate 1,6,"I RETURN    \slash HELP"
+\Locate 1,7,"---------------------"
+700\->A
+2\->C
+2\->D
+\While \Getkey\<>31
+C=7\=>2\->C
+C=1\=>6\->C
+D=1\=>14\->D
+D=3\=>14\->D
+D=13\=>2\->D
+D=15\=>2\->D
+\Locate D,C,"\->"
+\If \Getkey=28
+\Then \Locate D,C," "
+\Dsz C:\IfEnd
+\If \Getkey=37
+\Then \Locate D,C," "
+\Isz C:\IfEnd
+\If \Getkey=27
+\Then \Locate D,C," "
+\Isz D:\IfEnd
+\If \Getkey=38
+\Then \Locate D,H," "
+\Dsz D:\IfEnd
+\WhileEnd
+\If C=5\ And D=14
+\Then \ClrText
+\List 6[12]=1\=>\Locate 9,3,"ATTACK"
+\List 6[11]=1\=>\Locate 9,4,"CURE"
+\List 6[10]=1\=>\Locate 9,5,"NUKE"
+\While \Getkey\<>47
+\WhileEnd
+\IfEnd
+\If C=4\ And D=14
+\Then \ClrText
+\Locate 1,1,"WEAPON:"
+\Locate 1,2,"ARMOR:"
+\List 6[8]=1\=>\Locate 8,1,"FIST"
+\List 6[8]=2\=>\Locate 8,1,"CLUB"
+\List 6[8]=4\=>\Locate 8,1,"SHORT SWORD"
+\List 6[8]=50\=>\Locate 8,1,"LEACH SABRE"
+\List 6[8]=3\=>\Locate 8,1,"SPEAR"
+\List 6[8]=5\=>\Locate 8,1,"LONG SWORD"
+\List 6[8]=1000\=>\Locate 8,1,"MEGA-MACE"
+\List 6[9]=1\=>\Locate 8,2,"NONE"
+\List 6[9]=.75\=>\Locate 8,2,"LEATHER"
+\List 6[9]=.5\=>\Locate 8,2,"CHAIN"
+\List 6[9]=.25\=>\Locate 8,2,"PLATE"
+\List 6[9]=0\=>\Locate 8,2,"ENCHANTED"
+700\->A
+\While \Getkey\<>47
+\WhileEnd
+\IfEnd
+\If C=3\ And D=14
+\Then \ClrText
+\Prog "ID"
+1\->A
+\While \Getkey\<>47
+\Locate 1,A,"\->"
+\If \Getkey=28
+\Then \Locate 1,A," "
+\Dsz A
+\IfEnd
+\If \Getkey=37
+\Then \Locate 1,A," "
+\Isz A
+\IfEnd
+A=0\=>7\->A
+A=8\=>1\->A
+\If \Getkey=31\ And \List 6[A]=3
+\Then 0\->\List 6[A]
+p+50xL\->P
+\Locate 2,A,"                    "
+\IfEnd
+\If \Getkey=31\ And \List 6[A]=2
+\Then 0\->\List 6[A]
+P+10xL\->P
+\Locate 2,A,"                    "
+\IfEnd
+\WhileEnd
+700\->A
+\IfEnd
+\If C=6\ And D=2
+\Then \GotoZ
+\IfEnd
+\If C=3\ And D=2
+\Then {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}\->\List 2
+P\->\List 2[1]
+L\->\List 2[2]
+K\->\List 2[3]
+M\->\List 2[4]
+F\->\List 2[5]
+\For 1\->A \To 12
+\List 6[A]\->\List 2[5+A]
+\Next 
+700\->A
+\IfEnd
+\If C=4\ And D=2
+\Then \List 2[1]\->P
+\List 2[2]\->L
+\List 2[3]\->K
+\List 2[4]\->M
+\List 2[5]\->F
+\For 1\->A \To 12
+\List 2[5+A]\->\List 6[A]
+\Next 
+700\->A
+\IfEnd
+\If C=2\ And D=2
+\Then \GotoW
+\IfEnd
+\If C=5\ And D=2
+\Then \GotoY
+\IfEnd
+\If C=2\ And D=14
+\Then \ClrText
+\Locate 1,1,"~~~~~~~~~~~~~~~~~~~~~"
+\Locate 1,2,"I HP=               I"
+\Locate 1,3,"I MP=               I"
+\Locate 1,4,"I LEVEL=            I"
+\Locate 1,5,"I EXP PTS.=         I"
+\Locate 1,6,"I NEXT=             I"
+\Locate 1,7,"I GOLD=             I"
+\Locate 6,2,P
+\Locate 6,3,M
+\Locate 9,4,L
+\Locate 12,5,\Int K
+\Locate 8,6,\Int R
+\Locate 8,7,F
+\While \Getkey\<>47
+\WhileEnd
+\If \Getkey=47
+\Then \GotoX
+\IfEnd
+\IfEnd
+\If C=6\ And D=14
+\Then \ClrText
+\Locate 1,1,"~~~~~~~~~~~~~~~~~~~~~"
+\Locate 1,2,"HELP-"
+\Locate 1,3,"USE THE HELP MENU"
+\Locate 1,4,"FOR HELP IN THE GAME"
+\While \Getkey\<>47
+\WhileEnd
+\If \Getkey=47
+\Then \GotoX
+\IfEnd
+\IfEnd
+\WhileEnd
+\IfEnd
+\Lbl Z
+\If A=700
+\Then 1\->A
+\For 1\->A \To 7
+\Locate 1,A,"\Dms^^^^^^^^^^^^^^^^^^^^^\Dms"
+\Next 
+\Locate 1,1,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms^^\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\Locate 1,4,"^"
+\Locate 21,4,"^"
+\Locate 1,7,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+\IfEnd
+\WhileEnd
+\Lbl 1
+\For 1\->A \To 4
+\Locate G+1,H,">"
+\Locate G+1,H,">"
+\Locate G+1,H,"-"
+\Locate G+1,H,"-"
+\Locate G+1,H,"^"
+\Next 
+\Locate G+1,H,"^"
+\For 1\->A \To 3
+\Locate G,H,">"
+\Locate G,H,">"
+\Locate G,H,"-"
+\Locate G,H,"-"
+\Locate G,H,"^"
+\Next 
+\For 1\->A \To 10
+\Locate 5,4,"ENEMY COMES!"
+\Locate 5,4,"ENEMY COMES!"
+\Locate 5,4,"            "
+\Next 
+\ClrText
+\Locate 1,5,"^-------------------^"
+\Locate 1,1,"[H.P.="
+\Locate 14,1,"HIT"
+\Locate 1,2,"[M.P.="
+\Locate 14,2,"MAGIC"
+\Locate 1,3,"[LEVEL="
+\Locate 14,3,"ITEM"
+\Locate 1,4,"[ENEMY="
+\Locate 14,4,"RUN"
+\Locate 21,1,"]"
+\Locate 21,2,"]"
+\Locate 21,3,"]"
+\Locate 21,4,"]"
+\Locate 2,7,"O"
+\Locate 20,7,"X"
+\For 1\->A \To 20
+\Locate 1,6,"                     "
+\Next 
+2\->Z
+\Lbl G
+\Locate 2,6,"                    "
+\List 6[9]\->A
+P-(L*5*A)\->P
+P\<=0\=>\GotoD
+P<1000\=>\Locate 7,1,"   "
+\Locate 1,7,"XXX"
+\Locate 1,7,"XXX"
+\Locate 1,7," O "
+\Locate 7,1,\Int P
+\Locate 7,2,M
+\Locate 8,3,L
+\Locate 8,4,Q
+\Locate 13,C," "
+1\->C
+\Int 35\Ran#+1\->I
+\Lbl C
+\Locate 14,1,"HIT"
+\Locate 14,2,"MAGIC"
+\Locate 14,3,"ITEM"
+\Locate 14,5,"RUN"
+\While \Getkey\<>31
+C=0\=>4\->C
+C=5\=>1\->C
+\Locate 13,C,"\->"
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\WhileEnd
+\If C=1
+\Then \List 6[8]=50\=>(L*11*50)+P\->P
+\List 6[8]\->W
+L*W*11\->N
+\List 6[8]=1000\=>L<100\=>N/1000\->N
+\If W=1000
+\Then \Locate 3,6,"I\theta"
+\For 4\->A \To 19
+\Locate A,6,"\theta"
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 19,6," "
+\Locate 19,7," \theta"
+\For 1\->A \To 50
+\Next 
+\Locate 19,6,"\theta"
+\Locate 19,7," X"
+\For 1\->A \To 4 \Step -1
+\Locate A,6,"\theta "
+\Next 
+\Locate 3,6,"         "
+\IfEnd
+\Locate 8,4,"         "
+Q-N\->Q
+Q\<=O\=>\GotoV
+\For 1\->A \To 3
+\Locate 19,7,"XXX"
+\Locate 19,7,"XXX"
+\Locate 19,7,"---"
+\Locate 19,7,"---"
+\Locate 19,7," X "
+\Next 
+\For 1\->A \To 10
+\Locate 6,6,"YOU HIT HIM"
+\Next 
+\Locate 6,6,"           "
+\GotoG
+\IfEnd
+1\->A
+\While \List 6[A]\<>4\ And A<7
+A+1\->A
+\WhileEnd
+\If C=2\ And M>4\ And \List 6[A]=4
+\Then \Locate 14,1,"   "
+\Locate 14,2,"     "
+\List 6[12]=1\=>\Locate 14,2,"ATTACK"
+\Locate 14,3,"    "
+\List 6[11]=1\=>\Locate 14,3,"CURE"
+\Locate 14,4,"    "
+\List 6[10]=1\=>\Locate 14,4,"NUKE"
+\While \Getkey\<>47\ And \Getkey\<>31
+C=1\=>4\->C
+C=5\=>2\->C
+\Locate 13,C,"\->"
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\WhileEnd
+\If \Getkey=47
+\Then \GotoC
+\IfEnd
+\If C=2\ And \List 6[12]=1
+\Then L*25\->N
+Q-N\->Q
+\Locate 8,4,"      "
+\For 1\->A \To 3
+\Locate 5,7,"**************"
+\Locate 5,7,"//////////////"
+\Next 
+\Locate 5,7,"              "
+\Locate 20,7,"X"
+\For 1\->A \To 10
+\Locate 19,7,"\Dms"
+\Locate 19,7,"\Dms"
+\Locate 19,7,"---"
+\Locate 19,7,"---"
+\Next 
+\For 1\->A \To 3
+\Locate 19,7,"***"
+\Locate 19,7,"+++"
+\Locate 19,7," X "
+\Next 
+\For 1\->A \To 10
+\Locate 5,6,"CAST A SPELL"
+\Next 
+M-5\->M
+\Locate 5,6,"            "
+\Locate 17,2,"  "
+Q\<=O\=>\GotoV
+\IfEnd
+\If C=3\ And \List 6[11]=1
+\Then L*50\->N
+\For 1\->A \To 10
+\Locate 1,7,"***"
+\Locate 1,7,"###"
+\Locate 1,7,"~~~"
+\Locate 1,7," X "
+\Next 
+\For 1\->A \To 10
+\Locate 6,6,"CAST   CURE"
+\Next 
+P+N\->P
+M-5\->M
+\Locate 6,6,"           "
+M<100\=>\Locate 7,2,"    "
+\IfEnd
+\List 6[14-C]=0\=>\GotoG
+\If C=4\ And \List 6[10]=1
+\Then M-5\->M
+L<500\=>1\->P
+\Locate 6,6,"NUKE-HIM"
+\For 1\->A \To 100
+\Next 
+\Locate 6,6,"        "
+\For 2\->A \To 19
+\Locate A,6," ."
+\Next 
+\Locate 19,7,")("
+\Locate 18,6,"(~~)"
+\For 1\->A \To 150
+\Next 
+M<100\=>\Locate 7,2,"    "
+\Locate 7,1,"     "
+\Locate 8,4,"     "
+0\->Q
+\GotoV
+\IfEnd
+\GotoG
+\IfEnd
+\If C=3
+\Then \Locate 14,1,"   "
+\Locate 14,2,"     "
+\Locate 14,3,"    "
+\Locate 14,4,"    "
+1\->A
+\While \List 6[A]\<>1\ And A\<>7
+A+1\->A
+\WhileEnd
+\List 6[A]=1\=>\Locate 14,2,"POISON"
+1\->B
+\While \List 6[B]\<>3\ And B\<>7
+B+1\->B
+\WhileEnd
+\List 6[B]=3\=>\Locate 14,3,"MEDICINE"
+\While \Getkey\<>31\ And \Getkey\<>47
+C=1\=>3\->C
+C=4\=>2\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\WhileEnd
+\If \Getkey=47
+\Then \Locate 14,1,"HIT"
+\Locate 14,2,"MAGIC "
+\Locate 14,3,"ITEM   I"
+\Locate 14,4,"RUN"
+\GotoC
+\IfEnd
+\If C=2\ And \List 6[A]=1
+\Then Q-100\->Q
+0\->\List 6[A]
+Q\<=0\=>\GotoV
+\IfEnd
+\If C=3\ And \List 6[B]=3
+\Then P+50*L\->P
+0\->\List 6[B]
+\IfEnd
+\Locate 14,1,"HIT"
+\Locate 14,2,"MAGIC "
+\Locate 14,3,"ITEM   I"
+\Locate 14,4,"RUN"
+C=1\=>\GotoC
+\GotoG
+\IfEnd
+\If C=4
+\Then \Int (2\Ran#+1)\->Y
+Y=1\=>\Locate 5,6,"COULDN'T RUN"
+Y=1\=>\For 1\->A \To 150
+Y=1\=>\Next 
+Y=2\=>\Locate 3,6,"YOU'VERETREATED"
+\For 1\->A \To 150
+\Next 
+Y=1\=>\GotoG
+Y=2\=>\GotoR
+\IfEnd
+\Lbl V
+\ClrText
+\Locate 1,1,"^-------------------^"
+\Locate 1,7,"^-------------------^"
+\For 2\->A \To 6
+\Locate 1,A,"I"
+\Locate 21,A,"I"
+\Next 
+\Locate 1,1,"---------------------"
+\Locate 2,3,""
+\Locate 2,2,""
+\Locate 6,2,"VICTORIOUS"
+\Locate 2,3,""
+\Locate 3,3,"EXPPOINTS="
+\Locate 1,3,"I"
+\Locate 1,4,"I"
+\Locate 2,4,""
+\Locate 3,4,"LEVEL="
+\Locate 2,5,""
+\Locate 3,5,"GOLD="
+1\->A
+\While A\<>7\ And \List 6[A]\<>5
+A+1\->A
+\WhileEnd
+(L*\Int 50\Ran#)\->N
+P=1\=>0\->N
+\List 6[A]\<>5\=>0\->N
+F+N\->F
+\Locate 8,5,N
+\Locate 1,4,"I"
+\Locate 10,4,""
+\Locate 9,4,L
+P*L\->U
+\Int U\->U
+\Locate 14,3,U
+\For 2\->A \To 6
+\Locate 1,A,"I"
+\Locate 21,A,"I"
+\Next 
+\For 1\->A \To 75
+\Locate 2,5,""
+\Next 
+\GotoE
+\Lbl E
+L>1\=>(L*1325)+(L*1005)\->R
+L=1\=>L*1005\->R
+U+K\->K
+K>R\=>L+1\->L
+K>R\=>\Locate 6,6,"LEVELUP"
+K>R\=>(525+(L*45))\->P
+K>R\=>(L*5)\->M
+\If K>R
+\Then \Locate 6,6,"LEVELUP"
+\For 1\->A \To 6
+\Locate 6,6,"LEVELUP"
+\Next 
+\Locate 6,6,""
+\IfEnd
+\GotoR
+\Lbl D
+\For 1\->A \To 8
+\Locate 1,6,"XXXXXXXXXXXXXXXXXXXXX"
+\Locate 1,7,"XXXXXXXXXXXXXXXXXXXXX"
+\Locate 1,6,"---------------------"
+\Locate 1,7,"---------------------"
+\Next 
+\For 1\->A \To 25
+\Locate 2,6,"YOU'VEBEENKILLED"
+\Next 
+\Locate 2,6,"------------------"
+\For 1\->A \To 17
+\Locate 7,6,"GAMEOVER"
+\Locate 7,6,"GAMEOVER"
+\Locate 7,6,""
+\Next 
+\Stop
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:198
+File Name:ID
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\ClrText
+\For 1\->A \To 7
+\List 6[A]=1\=>\Locate 2,A,"POISON"
+\List 6[A]=2\=>\Locate 2,A,"FOOD"
+\List 6[A]=3\=>\Locate 2,A,"MEDICINE"
+\List 6[A]=4\=>\Locate 2,A,"MAGIC BOOK"
+\List 6[A]=5\=>\Locate 2,A,"BAG OF GOLD"
+\List 6[A]=6\=>\Locate 2,A,"FISHING POLE"
+\List 6[A]=7\=>\Locate 2,A,"BOAT"
+\Next 
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:8354
+File Name:CASTLE
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Locate 1,1,"~)\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms(~"
+\Locate 1,2,"~)^^^^^O{{{}}}O^^^^(~"
+\Locate 1,3,"~)^^^^^O{{\Dms}}O^^^^(~"
+\Locate 1,4,"~~~~~~~~~I  I~~~~~~~~"
+\Locate 1,5,"---------I  I--------"
+\Locate 1,6,"\Dms^^^^^^^^O  O^^^^^^^^"
+\Locate 1,7,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms  \Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+6\->H
+1\->V
+\While V=1
+\Locate G,H,"O"
+\If \Getkey=27\ And G<12
+\Then \Locate G,H," "
+G-1\->G
+\IfEnd
+\If \Getkey=28\ And H>4
+\Then \Locate G,H," "
+H-1\->H
+\IfEnd
+\If \Getkey=37\ And H<6
+\Then \Locate G,H," "
+H+1\->H
+\IfEnd
+\If \Getkey=37\ And H=6
+\Then \ClrText
+2\->V
+\IfEnd
+\If H=4\ And \Getkey=28
+\Then 900\->A
+11\->G
+7\->H
+\While H\<>8
+\If 900=A
+\Then 0\->A
+\ClrText
+\Locate 1,1,"IIIIIIIIIIIIIIIIIIIII"
+\Locate 1,2,"I+++++++II II+++++++I"
+\Locate 1,3,"I+++++++I   I+++++++I"
+\Locate 1,4,"I+++++++II II+++++++I"
+\Locate 1,5,"I+++++++I   I+++++++I"
+\Locate 1,6,"I+++++++II II+++++++I"
+\Locate 1,7,"IIIIIIIIII IIIIIIIIII"
+\IfEnd
+\Locate 11,H,"O"
+\If H=5\ And \Getkey=38
+\Then 1\->T
+100000\->Q
+\While Q>0\ And T\<>35
+\ClrText
+\Locate 1,1,"[H.P.=       HIT    ]"
+\Locate 1,2,"[M.P.=       MAGIC  ]"
+\Locate 1,3,"[LEVEL=      ITEM   ]"
+\Locate 1,4,"[ENEMY=      RUN    ]"
+\Locate 1,5,"^-------------------^"
+\Locate 2,7,"O"
+\Locate 20,7,"8"
+1\->T
+\List 6[9]\<>0\=>P-1\->P
+\Locate 1,7,"XXX"
+\Locate 1,7,"XXX"
+\Locate 1,7," O "
+\If P\<=0
+\Then \Locate 6,6,"YOU LOSE"
+\Stop
+\IfEnd
+1\->C
+\Locate 7,1,P
+\Locate 7,2,M
+\Locate 8,3,L
+\Locate 8,4,Q
+\While \Getkey\<>31
+C=0\=>4\->C
+C=5\=>1\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+C+1\->C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+C-1\->C
+\IfEnd
+\WhileEnd
+\List 6[8]\->W
+\If C=1\ And W=1000
+\Then \Locate 3,6,"I\theta"
+\For 4\->A \To 19
+\Locate A,6,"\theta"
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 20,6," "
+\Locate 20,7,"\theta"
+\For 1\->A \To 50
+\Next 
+\Locate 20,6,"\theta"
+\Locate 20,7,"8"
+\For 1\->A \To 50
+\Next 
+\For 19\->A \To 3 \Step -1
+\Locate A,6,"\theta "
+\Next 
+\Locate 1,6,"                   "
+\IfEnd
+\If C=1
+\Then \For 1\->A \To 10
+\Locate 19,7,"---"
+\Locate 19,7,"---"
+\Locate 19,7,"XXX"
+\Locate 19,7,"XXX"
+\Locate 19,7," 8 "
+\Next 
+\List 6[8]=50\=>Q-(50*11*l)\->Q
+\List 6[8]=50\=>P+(50*11*L)\->P
+\List 6[8]\<>50\=>\Locate 1,6,"THE ARMOR BLOCKED YOU"
+\List 6[8]\<>50\=>\For 1\->A \To 250
+\List 6[8]\<>50\=>\Next 
+\List 6[8]\<>50\=>\Locate 1,6,"                     "
+\IfEnd
+1\->A
+\While A\<>7\ And \List 6[A]\<>4
+A+1\->A
+\WhileEnd
+\If \List 6[A]=4\ And C=2\ And M\>=5
+\Then \Locate 14,1,"      "
+\Locate 14,2,"      "
+14,3,"      "
+14,4,"      "
+\List 6[10]=1\=>\Locate 14,4,"NUKE"
+\List 6[11]=1\=>\Locate 14,3,"CURE"
+\List 6[12]=1\=>\Locate 14,2,"ATACK"
+\While \Getkey\<>31\ And \Getkey\<>47
+C=1\=>4\->C
+C=5\=>2\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+C+1\->C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+C-1\->C
+\IfEnd
+\WhileEnd
+\If \Getkey=47
+\Then 1\->C
+\List 6[9]\<>0\=>P+1\->P
+\IfEnd
+\If C=2\ And \List 6[12]=1
+\Then M-5\->M
+\Locate 1,6,"THE ARMOR BLOCKED YOU"
+\For 1\->A \To 250
+\Next 
+\Locate 1,6,"                     "
+1\->C
+\IfEnd
+\If C=3\ And \List 6[11]=1
+\Then M-5\->M
+\For 1\->A \To 10
+\Locate 1,7,"***"
+\Locate 1,7,"###"
+\Locate 1,7,"~~~"
+\Locate 1,7," O "
+\Next 
+P+(50*L)\->P
+1\->C
+\IfEnd
+\If C=4\ And \List 6[10]=1
+\Then M-5\->M
+\Locate 8,6,"NUKE-HIM"
+\For 1\->A \To 150
+\Next 
+\Locate 8,6,"        "
+\For 2\->A \To 18
+\Locate A,6," ."
+\For 1\->B \To 10
+\Next 
+\Next 
+0\->Q
+\Locate 19,7,")("
+\Locate 18,6,"(~~)"
+\For 1\->A \To 100
+\Next 
+1\->C
+\IfEnd
+\IfEnd
+\If C=3
+\Then \Locate 14,1,"    "
+\Locate 14,2,"     "
+\Locate 14,3,"     "
+\Locate 14,4,"     "
+1\->A
+\While A<7\ And \List 6[A]\<>1
+A+1\->A
+\WhileEnd
+\List 6[A]=1\=>\Locate 14,2,"POISON"
+1\->B
+\While B<7\ And \List 6[B]\<>3
+B+1\->B
+\WhileEnd
+\List 6[B]=3\=>\Locate 14,3,"MEDICINE"
+\While \Getkey\<>31\ And \Getkey\<>47
+C=1\=>3\->C
+C=4\=>2\->C
+\Locate 13,C,"\->"
+\If \Getkey=28
+\Then \Locate 13,C," "
+C-1\->C
+\IfEnd
+\If \Getkey=37
+\Then \Locate 13,C," "
+C+1\->C
+\IfEnd
+\WhileEnd
+\If \Getkey=47
+\Then 1\->C
+\List 6[9]\<>0\=>P+1\->P
+\IfEnd
+\If C=2\ And \List 6[A]=1
+\Then \Locate 1,6,"THE ARMOR BLOCKED YOU"
+0\->\List 6[A]
+\IfEnd
+\If C=3\ And \List 6[B]=3
+\Then P+50*L\->P
+0\->\List 6[B]
+\IfEnd
+\IfEnd
+\If C=4
+\Then 35\->T
+\IfEnd
+\WhileEnd
+\ClrText
+\If T=1
+\Then \Locate 1,1,"HIS CORPSE CRUMBLES"
+\Locate 1,2,"TO DUST AND YOU TAKE"
+\Locate 1,3,"THE ONLY THING LEFT,"
+\Locate 1,4,"THE ENCHANTED ARMOR."
+\For 1\->A \To 1000
+\Next 
+0\->\List 6[9]
+\IfEnd
+900\->A
+\IfEnd
+\If H=5\ And \Getkey=27
+\Then L*11000\->Q
+1\->T
+\While Q>0\ And T\<>35
+\ClrText
+\Locate 1,1,"[H.P.=       HIT    ]"
+\Locate 1,2,"[M.P.=       MAGIC  ]"
+\Locate 1,3,"[LEVEL=      ITEM   ]"
+\Locate 1,4,"[ENEMY=      RUN    ]"
+\Locate 1,5,"^-------------------^"
+\Locate 2,7,"O"
+\Locate 20,7,"M"
+\Locate 7,1,P
+\Locate 7,2,M
+\Locate 8,3,L
+\Locate 8,4,Q
+\If T\<>5
+\Then P*4*\List 6[9]\->N
+P-N\->P
+\Locate 18,6,"\thetaI"
+\For 17\->A \To 2 \Step -1
+\Locate A,6,"\theta"
+\For 1\->B \To 10
+\Next 
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 2,6," "
+\Locate 2,7,"\theta"
+\For 1\->A \To 50
+\Next 
+\For 2\->A \To 17
+\Locate A,6," \theta"
+\For 1\->B \To 10
+\Next 
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 17,6,"     "
+\Locate 1,7,"XXX"
+\Locate 1,7,"XXX"
+\Locate 1,7," O "
+1\->T
+\IfEnd
+\If P<1
+\Then \Locate 8,6,"YOU LOSE"
+\Stop
+\IfEnd
+1\->T
+1\->C
+\While \Getkey\<>31
+C=0\=>4\->C
+C=5\=>1\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+C+1\->C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+C-1\->C
+\IfEnd
+\WhileEnd
+\If C=1\ And \List 6[8]=1000
+\Then \Locate 3,6,"I\theta"
+\For 4\->A \To 19
+\Locate A,6,"\theta"
+\For 1\->B \To 10
+\Next 
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 20,6," "
+\Locate 20,7,"\theta"
+\For 1\->A \To 50
+\Next 
+\Locate 20,6,"\theta"
+\Locate 20,7,"M"
+\For 1\->A \To 50
+\Next 
+\For 19\->A \To 4 \Step -1
+\Locate A,6,"\theta "
+\For 1\->B \To 10
+\Next 
+\Next 
+\Locate 1,6,"                   "
+\IfEnd
+\If C=1
+\Then Q-(L*\List 6[8]*11)\->Q
+\List 6[8]=50\=>L*550+P\->P
+\IfEnd
+1\->A
+\While A\<>7\ And \List 6[A]\<>4
+A+1\->A
+\WhileEnd
+\If \List 6[A]=4\ And C=2\ And M\>=5
+\Then \Locate 14,1,"      "
+\Locate 14,2,"      "
+\Locate 14,3,"      "
+\Locate 14,4,"      "
+\List 6[10]=1\=>\Locate 14,4,"NUKE"
+\List 6[11]=1\=>\Locate 14,3,"CURE"
+\List 6[12]=1\=>\Locate 14,2,"ATACK"
+\While \Getkey\<>31\ And \Getkey\<>47
+C=1\=>4\->C
+C=5\=>2\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+C+1\->C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+C-1\->C
+\IfEnd
+\WhileEnd
+\If \Getkey=47
+\Then 5\->T
+1\->C
+\IfEnd
+\If C=2\ And \List 6[12]=1
+\Then \For 1\->A \To 50
+\Locate 19,7,"---"
+\Locate 19,7,"---"
+\Locate 19,7,"XXX"
+\Locate 19,7,"XXX"
+\Locate 19,7," M "
+\Next 
+Q-50*L\->Q
+M-5\->M
+\IfEnd
+\If C=3\ And \List 6[11]=1
+\Then \For 1\->A \To 50
+\Locate 1,7,"***"
+\Locate 1,7,"###"
+\Locate 1,7,"~~~"
+\Locate 1,7," O "
+\Next 
+P+50*L\->P
+M-5\->M
+\IfEnd
+\If C=4\ And \List 6[10]=1
+\Then M-5\->M
+\Locate 8,6,"NUKE-HIM"
+\Locate 8,6,"NUKE-HIM"
+\For 1\->A \To 150
+\Next 
+\Locate 8,6,"        "
+\For 2\->A \To 18
+\Locate A,6," ."
+\For 1\->B \To 10
+\Next 
+\Next 
+0\->Q
+\Locate 19,7,")("
+\Locate 18,6,"(~~)"
+0\->Q
+\IfEnd
+1\->C
+\IfEnd
+\If C=3
+\Then 1\->A
+1\->B
+\While A\<>7\ And \List 6[A]\<>1
+A+1\->A
+\WhileEnd
+\While B\<>7\ And \List 6[B]\<>3
+B+1\->B
+\WhileEnd
+\Locate 14,1,"    "
+\Locate 14,2,"     "
+\Locate 14,3,"     "
+\Locate 14,4,"     "
+\List 6[A]=1\=>\Locate 14,2,"POISON"
+\List 6[B]=3\=>\Locate 14,3,"MEDICINE"
+2\->C
+\While \Getkey\<>31\ And \Getkey\<>47
+C=1\=>3\->C
+C=4\=>2\->C
+\Locate 13,C,"\->"
+\If \Getkey=28
+\Then \Locate 13,C," "
+C-1\->C
+\IfEnd
+\If \Getkey=37
+\Then \Locate 13,C," "
+C+1\->C
+\IfEnd
+\WhileEnd
+\If \Getkey=47
+\Then 5\->T
+1\->C
+\IfEnd
+\If C=2\ And \List 6[A]=1
+\Then Q-100\->Q
+Q\->\List 6[A]
+\IfEnd
+\If C=3\ And \List 6[B]=3
+\Then P+50*L\->P
+0\->\List 6[B]
+\IfEnd
+1\->C
+\IfEnd
+\If C=4
+\Then 35\->T
+\IfEnd
+\WhileEnd
+\If T=1
+\Then \ClrText
+\Locate 1,1,"YOU TAKE THE MACE OFF"
+\Locate 1,2,"HIS CORPSE."
+\List 6[8]=50\=>\Locate 1,3,"THE LEACH SABER"
+\List 6[8]=50\=>\Locate 1,4,"VANISHES."
+\List 6[8]=50\=>\Locate 1,5,"YOU FIND A GOLD PIECE"
+\List 6[8]=50\=>\Locate 1,6,"IN YOUR POUCH."
+\For 1\->A \To 1000
+\Next 
+\List 6[8]=50\=>F+1\->F
+1000\->\List 6[8]
+\IfEnd
+900\->A
+\IfEnd
+\If H=3\ And \Getkey=27
+\Then \ClrText
+\Locate 1,1,"*-------------------*"
+\Locate 5,2,"BUY THE BOAT?"
+\Locate 1,3,"*-------------------*"
+\Locate 4,4,"YES"
+\Locate 4,5,"NO"
+4\->C
+\While \Getkey\<>31
+C=3\=>5\->C
+C=6\=>4\->C
+\Locate 3,C,"\->"
+\If \Getkey=37
+\Then \Locate 3,C," "
+C+1\->C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 3,C," "
+C-1\->C
+\IfEnd
+\WhileEnd
+\If C=4\ And F<1000000
+\Then \Locate 3,7,"NOT ENOUGH GOLD!"
+\For 1\->A \To 300
+\Next 
+\IfEnd
+\If C=4\ And F>1000000
+\Then \Locate 4,7,"TOO MUCH GOLD!"
+\For 1\->A \To 300
+\Next 
+\IfEnd
+0\->A
+\Do
+1+A\->A
+\LpWhile 7>A\ And \List 6[A]\<>0
+\If C=4\ And F=1000000\ And \List 6[A]=0
+\Then \Locate 3,7,"YOU BOUGHT A BOAT"
+0\->F
+7\->\List 6[A]
+\For 1\->A \To 300
+\Next 
+\IfEnd
+900\->A
+\IfEnd
+\If H=3\ And \Getkey=38
+\Then \ClrText
+\Locate 1,1,"*-------------------*"
+\Locate 1,3,"*-------------------*"
+\List 6[8]=50\=>\List 6[9]\<>0\=>\Locate 1,2,"I'VE FOUND THE SABER!"
+\List 6[8]=1000\=>\List 6[10]\<>1\=>\Locate 4,2,"I GOT THE MACE!"
+\List 6[9]=0\=>\List 6[8]\<>1000\=>\List 6[10]\<>1\=>\Locate 4,2,"I GOT THE ARMOR!"
+\List 6[10]=1\=>\Locate 4,2,"I GOT THE NUKE!"
+\List 6[8]<6\=>\List 6[10]\<>1\=>\List 6[9]\<>0\=>\Locate 3,2,"WHERE DO I START?"
+\If (\List 6[8]=1000\ And L<100)\ Or (\List 6[10]=1\ And L<500)
+\Then \Locate 1,5,"COME BACK WHEN YOU"
+\Locate 1,6,"ARE STRONGER."
+4\->H
+\IfEnd
+\If L<500\ And \List 6[10]=1
+\Then \Locate 1,5,"MY BOY,"
+\Locate 1,6,"YOU HAVE DONE IT."
+4\->H
+\IfEnd
+\If L\>=500\ And \List 6[10]=1
+\Then \Locate 1,5,"SO DO I!"
+\For 1\->A \To 350
+\Next 
+1\->T
+22000*L\->Q
+\While T=1
+\Locate 1,1,"[H.P.=       HIT    ]"
+\Locate 1,2,"[M.P.=       MAGIC  ]"
+\Locate 1,3,"[LEVEL=      ITEM   ]"
+\Locate 1,4,"[ENEMY=      RUN    ]"
+\Locate 1,5,"^-------------------^"
+\Locate 2,7,"O"
+\Locate 20,7,"H"
+\Locate 7,1,P
+\Locate 7,2,M
+\Locate 8,3,L
+\Locate 8,4,Q
+\While \Getkey\<>31
+C=0\=>4\->C
+C=5\=>1\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\If C=1
+\Then Q-(11*\List 6[8]*L)\->Q
+\List 6[8]=50\=>P+(L*550)\->P
+\If \List 6[8]=1000
+\Then \Locate 3,6,"I\theta"
+\For 4\->A \To 19
+\Locate A,6,"\theta"
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 20,6," "
+\Locate 20,7,"\theta"
+\For 1\->A \To 50
+\Next 
+\Locate 20,6,"\theta"
+\Locate 20,7,"8"
+\For 20\->A \To 4 \Step -1
+\Locate A,6,"\theta "
+\Next 
+\For 1\->A \To 50
+\Next 
+\Locate 3,6,"   "
+\IfEnd
+\IfEnd
+1\->A
+\While A<7\ And \List 6[A}\<>4
+A+1\->A
+\WhileEnd
+\If C=2\ And \List 6[A]=4
+\Then \Locate 14,1,"      "
+\Locate 14,2,"      "
+\Locate 14,3,"      "
+\Locate 14,4,"      "
+\List 6[10]=1\=>\Locate 14,4,"NUKE"
+\List 6[11]=1\=>\Locate 14,3,"CURE"
+\List 6[12]=1\=>\Locate 14,2,"ATACK"
+\While \Getkey\<>31\ And \Getkey\<>47
+C=1\=>4\->C
+C=5\=>2\->C
+\Locate 13,C,"\->"
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\If \Getkey=47
+\Then 1\->C
+9\->I
+\IfEnd
+C=2\=>\List 6[12]=1\=>Q-(50*L)\->Q
+C=3\=>\List 6[11]=1\=>P+(50*L)\->P
+\If C=4\ And \List 6[10]=1
+\Then 0\->Q
+L<500\=>1\->P
+\For 2\->A \To 19
+\Locate A,6," ."
+\Next 
+\Locate 19,7,")("
+\Locate 18,6,"(~~)"
+\IfEnd
+1\->C
+\IfEnd
+\If C=3
+\Then \Locate 14,1,"      "
+\Locate 14,2,"      "
+\Locate 14,3,"      "
+\Locate 14,4,"      "
+1\->A
+1\->B
+\While A\<>7\ And \List 6[A]\<>1
+A+1\->A
+\WhileEnd
+\While B\<>7\ And \List 6[B]\<>3
+B+1\->B
+\WhileEnd
+\List 6[A]=1\=>\Locate 14,2,"POISON"
+\List 6[B]=3\=>\Locate 14,3,"MEDICINE"
+\While \Getkey\<>31
+C=1\=>3\->C
+C=4\=>2\->C
+\Locate 13,C,"\->"
+\If \Getkey=28
+\Then \Locate 13,C," "
+\Isz C
+\IfEnd
+\If \Getkey=37
+\Then \Locate 13,C," "
+\Dsz C
+\IfEnd
+\WhileEnd
+\IfEnd
+\If C=4
+\Then \Locate 6,6,"COULDN'T RUN"
+\For 1\->A \To 150
+\Next 
+\Locate 6,6,"            "
+\IfEnd
+\If I\<>9\ And Q>0
+\Then \For 19\->A \To 3 \Step -1
+\Locate A,6,". "
+\Next 
+\Locate 2,7,")("
+\Locate 1,6,"(~~)"
+0\->P
+\Stop
+\IfEnd
+Q\<=0\=>35\->T
+1\->I
+\WhileEnd
+\ClrText
+\Locate 1,1,"WITH HIS LAST BIT OF"
+\Locate 1,2,"STRENGTH THE IMPOSTER"
+\Locate 1,3,"DRIVES THE LEACH"
+\Locate 1,4,"SABER INTO YOU."
+P-1000\->P
+\Locate 1,5,"VANISHING WITH THE"
+\Locate 1,6,"SABER AND HIS COPY OF"
+\Locate 1,7,"THE NUKE."
+\If P\<=0
+\Then \ClrText
+\Locate 1,1,"HIS FINAL BLOW DOES"
+\Locate 1,2,"YOU IN."
+\Stop
+\IfEnd
+4\->H
+\IfEnd
+\If \List 6[10]=0\ And \List 6[9]\<>0\ And \List 6[8]<50
+\Then \Locate 1,5,"I'VE ALREADY TOLD YOU"
+\Locate 1,6,"ALL I KNOW."
+4\->H
+\IfEnd
+\If H=3
+\Then \Locate 1,5,"FACE YOUR NEXT"
+\Locate 1,6,"CHALLENGE."
+\IfEnd
+3\->H
+\For 1\->A \To 300
+\Next 
+900\->A
+\While \Getkey\<>47
+\WhileEnd
+900\->A
+\IfEnd
+\If \Getkey=28
+\Then \Locate 11,H," "
+H-1\->H
+\IfEnd
+\If \Getkey=37
+\Then \Locate 11,H," "
+H+1\->H
+\IfEnd
+H=1\=>2\->H
+\WhileEnd
+H=8\=>4\->H
+0\->A
+\IfEnd
+\If A=0
+\Then \ClrText
+\Locate 1,1,"~)\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms(~"
+\Locate 1,2,"~)^^^^^O{{{}}}O^^^^(~"
+\Locate 1,3,"~)^^^^^O{{\Dms}}O^^^^(~"
+\Locate 1,4,"~~~~~~~~~I  I~~~~~~~~"
+\Locate 1,5,"---------I  I--------"
+\Locate 1,6,"\Dms^^^^^^^^O  O^^^^^^^^"
+\Locate 1,7,"\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms  \Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms\Dms"
+9000\->A
+\IfEnd
+\WhileEnd
+2\->H
+700\->A
+
+%End

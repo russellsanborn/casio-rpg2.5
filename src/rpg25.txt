@@ -1,0 +1,1444 @@
+This is a remake of the RPG game, we made it with weapons, magic 
+spell and a story and more than one map. We made a castle map, town map and 
+one by a lake, along with the original map. Also Sorry we ran out of space.
+Make sure nothing important is in list 6 as well. You can even go fishing.
+
+5 different files are going to need to be created for the game and to keep it
+faster.
+
+Name the programs what they are titled.
+
+@    is the theta symbol
+/    is the division symbol
+>=   is greater than or equal to
+<=   is less than or equal to
+=/=  is not equal to
+x    is multiply lower case
+[]   is the little square you get when going into the degrees funtions
+Created (Modifyed) by Russell Sanborn and Nick Perry
+
+
+RPG
+---------------------
+
+Lbl Y
+ClrText
+For 1->A To 6
+Locate 9,4,"------"
+Locate 8,5,"--------"
+Next
+For 1->A To 11
+Locate 9,4,"SQUARE"
+Locate 8,5,"PRESENTS"
+Next
+ClrText
+For 1->A To 8
+Locate 8,1,"*** ***"
+Locate 8,1,"~~~ ~~~"
+Next
+For 1->A To 5
+Locate 8,1,"RPG 2.5"
+Next
+For 1->A To 8
+Locate 7,2,"****** **"
+Locate 7,2,"~~~~~~ ~~"
+Next
+For 1->A To 5
+Locate 7,2,"EDITED BY"
+Next
+For 1->A To 8
+Locate 4,4,"~~~~~~~ ~~~~~~~"
+Locate 4,4,"******* *******"
+Next
+For 1->A To 5
+Locate 4,4,"RUSSELL SANBORN"
+Next
+For1->A To 8
+Locate 10,5,"~~~"
+Locate 10,5,"***"
+Next
+For 1->A To 5
+Locate 9,5," And "                         Use the And key for this part
+Next
+For 1->A To 8
+Locate 6,6,"~~~~ ~~~~~"
+Locate 6,6,"**** *****"
+Next
+For 1->A To 5
+Locate 6,6,"NICK PERRY"
+Next
+For 1->A To 8
+Locate 6,7,"***** *****"
+Locate 6,7,"~~~~~ ~~~~~"
+Next
+While Getkey=/=31
+Locate 6,7,"PRESS [EXE]"
+WhileEnd
+0->K
+ClrText
+For 1->A To 100
+Next
+Getkey=31=>Goto W
+Locate 1,1,"IN THE BEGINING THERE"
+Locate 1,2,"WAS THE MACE."
+For 1->A To 300
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"AND THE MACE WAS"
+Locate 1,2,"GOOD."
+For 1->A To 100
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"IT IS SAID THAT THE"
+Locate 1,2,"MACE COULD VANQUISH"
+Locate 1,3,"ANY FOE IN A SINGLE"
+Locate 1,4,"BLOW IF THE WARRIOR"
+Locate 1,5,"WERE MIGHTY ENOUGH."
+For 1->A To 650
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"THEN THE ENCHANTED"
+Locate 1,2,"ARMOR WAS FORGED TO"
+Locate 1,3,"DEFEND AGAINST THE"
+Locate 1,4,"MACE."
+For 1->A To 500
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"THEN CAME THE NUKE."
+For 1->A To 250
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"AND THE NUKE WAS TOO"
+Locate 1,2,"GOOD."
+For 1->A To 300
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"THE ANCIENTS WERE"
+Locate 1,2,"DESTROYED BY THE"
+Locate 1,3,"NUKE."
+For 1->A To 450
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"A SINGLE ANCIENT HAS"
+Locate 1,2,"SURVIVED TO THIS DAY."
+For 1->A To 375
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"HE HOLDS THE SECRET"
+Locate 1,2,"TO THE NUKE."
+For 1->A To 375
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"I CHARGE YOU WITH"
+Locate 1,2,"RETREAVING THE SECRET"
+Locate 1,3,"TO THE NUKE."
+For 1->A To 375
+Getkey=31=>Goto W
+Next
+ClrText
+Locate 1,1,"JOURNEY NOW MY"
+Locate 1,2,"CHAMPION."
+For 1->A To 250
+Getkey=31=>Goto W
+Next
+ClrText
+Lbl W
+ClrText
+1->K
+525->P
+25->M
+1->L
+50->F
+{4,5,0,0,0,0,0,1,1,0,0,0}->List 6
+2->G
+6->H
+Lbl R
+Int (300Ran#)+25->Q
+QxL->@
+1->Z
+0->S
+2->O
+0->Y
+For 1->A To &
+Locate 1,A,"[]^^^^^^^^^^^^^^^^^^^[]"                    19 carrots ^
+Next
+Locate 1,1,"[][][][][][][][][][]^^[][][][][][][][][]"   10 boxes then 9 boxes
+Locate 1,4,"^"
+Locate 21,4,"^"
+Locate 1,7,"[][][][][][][][][][][][][][][][][][][][][]"  21 boxes
+While Z=1
+Int 40Ran#+1->E
+E=40=>Goto 1
+Int 75Ran#+1->T
+O=1=>1->T
+T=35=>Int 21Ran#+1->S
+T=35=>Int 7Ran#=1->Y
+S=1=>1->T
+S=21=>1->T
+Y=1=>1->T
+Y=7=>1->T
+T=35=>Locate S,Y,"*"
+T=35=>1->O
+Locate G,H,"O"
+If G=5 And H=Y And O=1
+Then Int (100Ran#+1)->N
+For 1->A To 6
+Locate 8,1,"HP+75"
+Locate 8,2,"MP+75"
+Locate 8,3,"GOLD+"
+Locate 13,3,N
+Next
+M+75->M
+P+75->P
+F+N->F
+Locate 8,1,"[][][]^^[][]"
+Locate 8,2,"^^^^^^^"                                  7 carrots ^
+Locate 8,3,"^^^^^^^^^^^^^[]"                          13 carrots ^
+2->O
+IfEnd
+If Getkey=38 And G>2
+Then Locate G,H,"^"
+G-1->G
+IfEnd
+If Getkey=38 And G=2 And H=4
+Then Locate G,H,"^"
+G-1->G
+IfEnd
+If Getkey=27 And G<20
+Then Locate G,H,"^"
+G+1->G
+IfEnd
+If Getkey=27 And G=20 And H=4
+Then Locate G,H,"^"
+G+1->G
+IfEnd
+If Getkey=28 And H>2
+Then Locate G,H,"^"
+H-1->H
+IfEnd
+If Getkey=28 And G=11 And H=2
+Then Locate G,H,"^"
+H-1->H
+IfEnd
+If Getkey=28 And G=12 And H=2
+Then Locate G,H,"^"
+H-1->H
+IfEnd
+If Getkey=37 And H<6
+Then Locate G,H,"^"
+H+1->H
+IfEnd
+G=1=>H=4=>Prog "TOWN"
+G=21=>H=4=>Prog "MAP"
+G=11=>H=1=>Prog "CASTLE"
+G=12=>H=1=>Prog "CASTLE"
+Lbl x
+If Getkey=48
+Then ClrText
+Locate 1,1,"---------------------"                     21 dashes -
+Locate 1,2,"I NEW GAME  / STATS"
+Locate 21,2,"I"
+Locate 1,3,"I SAVE GAME / ITEMS"
+Locate 21,3,"I"
+Locate 1,4,"I LOAD GAME / EQUIP"
+Locate 21,4,"I"
+Locate 1,5,"I EXIT GAME / MAGIC"
+Locate 21,5,"I"
+Locate 21,6,"I"
+Locate 1,6,"I RETURN    / HELP"
+Locate 1,7,"---------------------"                     21 dashes -
+700->A
+2->C
+2->D
+While Getkey=/=31
+C=7=>2->C
+C=1=>6->C    
+D=1=>14->D
+D=3=>14->D
+D=13=>2->D
+D=15=>2->D
+Locate D,C,"->"
+If Getkey=28
+Then Locate D,C," "
+Dsz C:IfEnd
+If Getkey=37
+Then Locate D,C," "
+Isz C:IfEnd
+If Getkey=27
+Then Locate D,C," "
+Isz D:IfEnd
+If Getkey=38
+Then Locate D,H," "
+Dsz D:IfEnd
+WhileEnd
+If C=5 And D=14
+Then ClrText
+List 6[12]=1=>Locate 9,3,"ATTACK"
+List 6[11]=1=>Locate 9,4,"CURE"
+List 6[10]=1=>Locate 9,5,"NUKE"
+While Getkey=/=47
+WhileEnd
+IfEnd
+If C=4 And D=14
+Then ClrText
+Locate 1,1,"WEAPON:"
+Locate 1,2,"ARMOR:"
+List 6[8]=1=>Locate 8,1,"FIST"
+List 6[8]=2=>Locate 8,1,"CLUB"
+List 6[8]=4=>Locate 8,1,"SHORT SWORD"
+List 6[8]=50=>Locate 8,1,"LEACH SABRE"
+List 6[8]=3=>Locate 8,1,"SPEAR"
+List 6[8]=5=>Locate 8,1,"LONG SWORD"
+List 6[8]=1000=>Locate 8,1,"MEGA-MACE"
+List 6[9]=1=>Locate 8,2,"NONE"
+List 6[9]=.75=>Locate 8,2,"LEATHER"
+List 6[9]=.5=>Locate 8,2,"CHAIN"
+List 6[9]=.25=>Locate 8,2,"PLATE"
+List 6[9]=0=>Locate 8,2,"ENCHANTED"
+700->A
+While Getkey=/=47
+WhileEnd
+IfEnd
+If C=3 And D=14
+Then ClrText
+Prog "ID"
+1->A
+While Getkey=/=47
+Locate 1,A,"->"
+If Getkey=28
+Then Locate 1,A," "
+Dsz A
+IfEnd
+If Getkey=37
+Then Locate 1,A," "
+Isz A
+IfEnd
+A=0=>7->A
+A=8=>1->A
+If Getkey=31 And List 6[A]=3
+Then 0->List 6[A]
+p+50xL->P
+Locate 2,A,"                    "                     20 spaces
+IfEnd
+If Getkey=31 And List 6[A]=2
+Then 0->List 6[A]
+P+10xL->P
+Locate 2,A,"                    "                     20 spaces
+IfEnd
+WhileEnd
+700->A
+IfEnd
+If C=6 And D=2
+Then Goto Z
+IfEnd
+If C=3 And D=2
+Then {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}->List 2      17 0's 
+P->List 2[1]
+L->List 2[2]
+K->List 2[3]
+M->List 2[4]
+F->List 2[5]
+For 1->A To 12
+List 6[A]->List 2[5+A]
+Next
+700->A
+IfEnd
+If C=4 And D=2
+Then List 2[1]->P
+List 2[2]->L
+List 2[3]->K
+List 2[4]->M
+List 2[5]->F
+For 1->A To 12
+List 2[5+A]->List 6[A]
+Next
+700->A
+IfEnd
+If C=2 And D=2
+Then Goto W
+IfEnd
+If C=5 And D=2
+Then Goto Y
+IfEnd
+If C=2 And D=14
+Then ClrText
+Locate 1,1,"~~~~~~~~~~~~~~~~~~~~~"                  21 tildes ~
+Locate 1,2,"I HP=               I"                  15 spaces
+Locate 1,3,"I MP=               I"                  15 spaces
+Locate 1,4,"I LEVEL=            I"                  12 spaces
+Locate 1,5,"I EXP PTS.=         I"                   9 spaces
+Locate 1,6,"I NEXT=             I"                  13 spaces
+Locate 1,7,"I GOLD=             I"                  13 spaces
+Locate 6,2,P
+Locate 6,3,M
+Locate 9,4,L
+Locate 12,5,Int K
+Locate 8,6,Int R
+Locate 8,7,F
+While Getkey=/=47
+WhileEnd
+If Getkey=47
+Then Goto X
+IfEnd
+IfEnd
+If C=6 And D=14
+Then ClrText
+Locate 1,1,"~~~~~~~~~~~~~~~~~~~~~"                  21 tildes ~
+Locate 1,2,"HELP-"
+Locate 1,3,"USE THE HELP MENU"
+Locate 1,4,"FOR HELP IN THE GAME"
+While Getkey=/=47
+WhileEnd
+If Getkey=47
+Then Goto X
+IfEnd
+IfEnd
+WhileEnd
+IfEnd
+Lbl Z
+If A=700
+Then 1->A
+For 1->A To 7
+Locate 1,A,"[]^^^^^^^^^^^^^^^^^^^^^[]"                    19 carrots
+Next
+Locate 1,1,"[][][][][][][][][][]^^[][][][][][][][][]"     10 boxes then 9
+Locate 1,4,"^"
+Locate 21,4,"^"
+Locate 1,7,"[][][][][][][][][][][][][][][][][][][][][]"   21 boxes
+IfEnd
+WhileEnd
+Lbl 1
+For 1->A To 4
+Locate G+1,H,">"
+Locate G+1,H,">"
+Locate G+1,H,"-"
+Locate G+1,H,"-"
+Locate G+1,H,"^"
+Next
+Locate G+1,H,"^"
+For 1->A To 3
+Locate G,H,">"
+Locate G,H,">"
+Locate G,H,"-"
+Locate G,H,"-"
+Locate G,H,"^"
+Next
+For 1->A To 10
+Locate 5,4,"ENEMY COMES!"
+Locate 5,4,"ENEMY COMES!"
+Locate 5,4,"            "                               12 spaces
+Next
+ClrText
+Locate 1,5,"^-------------------^"                      19 dashes -
+Locate 1,1,"[H.P.="
+Locate 14,1,"HIT"
+Locate 1,2,"[M.P.="
+Locate 14,2,"MAGIC"
+Locate 1,3,"[LEVEL="
+Locate 14,3,"ITEM"
+Locate 1,4,"[ENEMY="
+Locate 14,4,"RUN"
+Locate 21,1,"]"
+Locate 21,2,"]"
+Locate 21,3,"]"
+Locate 21,4,"]"
+Locate 2,7,"O"
+Locate 20,7,"X"
+For 1->A To 20
+Locate 1,6,"                     "                      21 spaces
+Next
+2->Z
+Lbl G
+Locate 2,6,"                    "                       20 spaces
+List 6[9]->A
+P-(Lx5xA)->P
+P<=0=>Goto D
+P<1000=>Locate 7,1,"   "                                3 spaces
+Locate 1,7,"XXX"
+Locate 1,7,"XXX"
+Locate 1,7," O "
+Locate 7,1,Int P
+Locate 7,2,M
+Locate 8,3,L
+Locate 8,4,Q
+Locate 13,C," "
+1->C
+Int 35Ran#+1->I
+Lbl C
+Locate 14,1,"HIT"
+Locate 14,2,"MAGIC"
+Locate 14,3,"ITEM"
+Locate 14,5,"RUN"
+While Getkey=/=31
+C=0=>4->C
+C=5=>1->C
+Locate 13,C,"->"
+If Getkey=28
+Then Locate 13,C," "
+Dsz C
+IfEnd
+If Getkey=37
+Then Locate 13,C," "
+Isz C
+IfEnd
+WhileEnd
+If C=1
+Then List 6[8]=50=>(Lx11x50)+P->P
+List 6[8]->W
+LxWx11->N
+List 6[8]=1000=>L<100=>N/1000->N
+If W=1000
+The Locate 3,6,"I@"
+For 4->A To 19
+Locate A,6,"@"
+Next
+For 1->A To 50
+Next
+Locate 19,6," "
+Locate 19,7," @"
+For 1->A To 50
+Next
+Locate 19,6,"@"
+Locate 19,7," X"
+For 1->A To 4 Step-1
+Locate A,6,"@ "
+Next
+Locate 3,6,"         "                    9 spaces  not to sure about this
+IfEnd
+Locate 8,4,"         "                    9 spaces  not to sure about this
+Q-N->Q
+Q<=O=>Goto V
+For 1->A To 3
+Locate 19,7,"XXX"
+Locate 19,7,"XXX"
+Locate 19,7,"---"
+Locate 19,7,"---"
+Locate 19,7," X "
+Next
+For 1->A To 10
+Locate 6,6,"YOU HIT HIM"
+Next
+Locate 6,6,"           "                  11 spaces
+Goto G
+IfEnd
+1->A
+While List 6[A]=/=4 And A<7
+A+1->A
+WhileEnd
+If C=2 And M>4 And List 6[A]=4
+Then Locate 14,1,"   "                    3 spaces
+Locate 14,2,"     "                       5 spaces
+List 6[12]=1=>Locate 14,2,"ATTACK"
+Locate 14,3,"    "                        4 spaces
+List 6[11]=1=>Locate 14,3,"CURE"
+Locate 14,4,"    "                         4 spaces
+List 6[10]=1=>Locate 14,4,"NUKE"
+While Getkey =/=47 And Getkey=/=31
+C=1=>4->C
+C=5=>2->C
+Locate 13,C,"->"
+If Getkey=28
+Then Locate 13,C," "
+Dsz C
+IfEnd
+If Getkey =37
+Then Locate 13,C," "
+Isz C
+IfEnd
+WhileEnd
+If Getkey=47
+Then Goto C
+IfEnd
+If C=2 And List 6[12]=1
+Then Lx25->N
+Q-N->Q
+Locate 8,4,"      "                          6 spaces i think
+For 1->A To 3
+Locate 5,7,"**************"                  14 *'s
+Locate 5,7,"//////////////"                  14 slashes /'s
+Next
+Locate 5,7,"              "                  14 spaces
+Locate 20,7,"X"
+For 1->A To 10
+Locate 19,7,"[]"
+Locate 19,7,"[]"
+Locate 19,7,"---"
+Locate 19,7,"---"
+Next
+For 1->A To 3
+Locate 19,7,"***"
+Locate 19,7,"+++"
+Locate 19,7," X "
+Next
+For 1->A To 10
+Locate 5,6,"CAST A SPELL"
+Next
+M-5->M
+Locate 5,6,"            "                     12 spaces
+Locate 17,2,"  "
+Q<=O=>Goto V
+IfEnd
+If C=3 And List 6[11]=1
+Then Lx50->N
+For 1->A To 10
+Locate 1,7,"***"
+Locate 1,7,"###"
+Locate 1,7,"~~~"
+Locate 1,7," X "
+Next
+For 1->A To 10
+Locate 6,6,"CAST   CURE"
+Next
+P+N->P
+M-5->M
+Locate 6,6,"           "                      11 spaces
+M<100=>Locate 7,2,"    "                      4 spaces
+IfEnd
+List 6[14-C]=0=>Goto G
+If C=4 And List 6[10]=1
+Then M-5->M
+L<500=>1->P
+Locate 6,6,"NUKE-HIM"
+For 1->A To 100
+Next
+Locate 6,6,"        "                          8 spaces
+For 2->A To 19
+Locate A,6," ."
+Next
+Locate 19,7,")("
+Locate 18,6,"(~~)"
+For 1->A To 150
+Next
+M<100=>Locate 7,2,"    "                       4 spaces
+Locate 7,1,"     "                             5 spaces
+Locate 8,4,"     "                             5 spaces
+0->Q
+Goto V
+IfEnd
+Goto G
+IfEnd
+If C=3
+Then Locate 14,1,"   "                         3 spaces
+Locate 14,2,"     "                            5 spaces
+Locate 14,3,"    "                             4 spaces
+Locate 14,4,"    "                             4 spaces
+1->A
+While List 6[A]=/=1 And A=/=7
+A+1->A
+WhileEnd
+List 6[A]=1=>Locate 14,2,"POISON"
+1->B
+While List 6[B]=/=3 And B=/=7
+B+1->B
+WhileEnd
+List 6[B]=3=>Locate 14,3,"MEDICINE"
+While Getkey=/=31 And Getkey=/=47
+C=1=>3->C
+C=4=>2->C
+Locate 13,C,"->"
+If Getkey=37
+Then Locate 13,C," "
+Dsz C
+IfEnd
+If Getkey=28
+Then Locate 13,C," "
+Isz C
+IfEnd
+WhileEnd
+If Getkey=47
+Then Locate 14,1,"HIT"
+Locate 14,2,"MAGIC "
+Locate 14,3,"ITEM   I"                             3 spaces
+Locate 14,4,"RUN"
+Goto C
+IfEnd
+If C=2 And List 6[A]=1
+Then Q-100->Q
+0->List 6[A]
+Q<=0=>Goto V
+IfEnd
+If C=3 And List 6[B]=3
+Then P+50xL->P
+0->List 6[B]
+IfEnd
+Locate 14,1,"HIT"
+Locate 14,2,"MAGIC "
+Locate 14,3,"ITEM   I"                              3 spaces
+Locate 14,4,"RUN"
+C=1=>Goto C
+Goto G
+IfEnd
+If C=4
+Then Int(2Ran#+1)->Y
+Y=1=>Locate 5,6,"COULDN"T RUN"
+Y=1=>For 1->A To 150
+Y=1=>Next
+Y=2=>Locate 3,6,"YOU'VE RETREATED"
+For 1->A To 150
+Next
+Y=1=>Goto G
+Y=2=>Goto R
+IfEnd
+Lbl V
+ClrText
+Locate 1,1,"^-------------------^"                   19 dashes -'s
+Locate 1,7,"^-------------------^"                   19 dashes -'s
+For 2->A To 6
+Locate 1,A,"I"
+Locate 21,A,"I"
+Next
+Locate 1,1,"---------------------"                   21 dashes -'s
+Locate 2,3,"                     "                   19 spaces
+Locate 2,2,"     "                                   5 spaces i think
+Locate 6,2,"VICTORIOUS "
+Locate 2,3,"   "
+Locate 3,3,"EXP POINTS=        "                     8 spaces i think
+Locate 1,3,"I"
+Locate 1,4,"I"
+Locate 2,4,"     "                                   5 spaces i think
+Locate 3,4,"LEVEL="
+Locate 2,5,"     "                                   5 spaces i think
+Locate 3,5,"GOLD="
+1->A
+While A=/=7 And List 6[A]=/=5
+A+1->A
+WhileEnd
+(LxInt50Ran#)->N
+P=1=>0->N
+List 6[A]=/=5=>0->N
+F+N->F
+Locate 8,5,N
+Locate 1,4,"I"
+Locate 10,4,"                "                       16 spaces i think
+Locate 9,4,L
+PxL->U
+Int U->U
+Locate 14,3,U
+For 2->A To 6
+Locate 1,A,"I"
+Locate 21,A,"I"
+Next
+For 1->A To 75
+Locate 2,5," "
+Next
+Goto E
+Lbl E
+L>1=>(Lx1325)+(Lx1005)->R
+L=1=>Lx1005->R
+U+K->K
+K>R=>L+1->L
+K>R=>Locate 6,6,"LEVEL UP"
+K>R=>(525+(Lx45))->P
+K>R=>(Lx5)->M
+If K>R
+Then Locate 6,6,"LEVEL UP"
+For 1->A To 6
+Locate 6,6,"LEVEL UP"
+Next
+Locate 6,6,"        "                                  8 spaces
+IfEnd
+Goto R
+Lbl D
+For 1->A To 8
+Locate 1,6,"XXXXXXXXXXXXXXXXXXXXX"                     21 X's
+Locate 1,7,"XXXXXXXXXXXXXXXXXXXXX"                     21 X's
+Locate 1,6,"---------------------"                     21 -'s
+Locate 1,7,"---------------------"                     21 -'s
+Next
+For 1->A To 25
+Locate 2,6,"YOU'VE BEEN KILLED"
+Next
+Locate 2,6,"------------------"                        18 -'s
+For 1->A To 17
+Locate 7,6,"GAME OVER"
+Locate 7,6,"GAME OVER"
+Locate 7,6,"         "                                 9 spaces
+Next
+Stop
+
+
+--------------------------------------------------
+
+
+ID
+------------------
+
+ClrText
+For 1->A To 7
+List 6[A]=1=>Locate 2,A,"POISON"
+List 6[A]=2=>Locate 2,A,"FOOD"
+List 6[A]=3=>Locate 2,A,"MEDICINE"
+List 6[A]=4=>Locate 2,A,"MAGIC BOOK"
+List 6[A]=5=>Locate 2,A,"BAG OF GOLD"
+List 6[A]=6=>Locate 2,A,"FISHING POLE"
+List 6[A]=7=>Locate 2,A,"BOAT"
+Next
+
+
+--------------------------------------------------
+
+
+MAP
+------------------
+
+2->G
+4->H
+For 1->A To 7
+Locate 1,A,"[]^^^^^^^^^^^(~~~~~~~~"
+Next
+Locate 2,1,"[][][][][][][][][][][]"                      11 boxes
+Locate 1,4,"^"
+Locate 2,7,"[][][][][][][][][][][]"                      11 boxes
+1->V
+500->A
+While V=1
+Locate G,H,"O"
+If Getkey=27 And G<12
+Then Locate G,H,"^"
+G+1->G
+IfEnd
+If Getkey=38 And G>2
+Then Locate G,H,"^"
+G-1->G
+IfEnd
+If Getkey=37 And H<6
+Then Locate G,H,"^"
+H+1->H
+IfEnd
+If Getkey=28 And H>2
+Then Locate G,H,"^"
+H-1->H
+IfEnd
+If Getkey=38 And G=2 And H=4
+Then 2->V
+IfEnd
+1->A
+While List 6[A]=/=7 And A=/=7
+A+1->A
+WhileEnd
+If Getkey=31 And G=12 And List 6[A]=7
+Then Locate 12,H,"^"
+Locate 13,H,"O"
+For 1->A To 20
+Next
+Locate 13,H,"(O"
+For 1->A To 20
+Next
+For 14->A To 20
+Locate A,H,"~O"
+For 1->B To 20
+Next
+Next
+ClrText
+Locate 1,1,"ACROSS THE LAKE YOU"
+Locate 1,2,"FIND A CITY FILLED"
+Locate 1,3,"WITH WONDERS."
+For 1->A To 650
+Next
+ClrText
+Locate 1,1,"DUE TO MEMORY"
+Locate 1,2,"CONSTRAINTS WE COULD"
+Locate 1,3,"NOT SHOW YOU THE"
+Locate 1,4,"CITY."
+For 1->A To 650
+Next
+ClrText
+Locate 1,1,"YOU TRACK THE ANCIENT"
+Locate 1,2,"FOR YEARS, FINALLY"
+Locate 1,3,"YOU FIND HIM."
+For 1->A To 650
+Next
+Locate 1,1,"[H.P.=       HIT    ]"                   7 spaces then 4 spaces
+Locate 1,2,"[M.P.=       MAGIC  ]"                   7 spaces then 2 spaces
+Locate 1,3,"[LEVEL=      ITEM   ]"                   6 spaces then 3 spaces
+Locate 1,4,"[ENEMY=      RUN    ]"                   6 spaces then 4 spaces
+Locate 1,5,"^-------------------^"                   19 dashes
+Locate 2,7,"O"
+Locate 20,7,"A"
+Lx11000->Q
+Locate 7,1,P
+Locate 7,2,M
+Locate 8,3,L
+Locate 8,4,Q
+1->C
+While Getkey=/=31
+C=5=>1->C
+C=0=>4->C
+Locate 13,C,"->"
+If Getkey=37
+Then Locate 13,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate 13,C," "
+Dsz C
+IfEnd
+WhileEnd
+1->A
+While A<8 And List 6[A]=/=4
+A+1->A
+WhileEnd
+If C=2 And List 6[A]=4
+Then Locate 14,1,"   "                                  3 spaces
+Locate 14,2,"     "                                     5 spaces
+Locate 14,3,"    "                                      4 spaces
+Locate 14,4,"   "                                       3 spaces
+List 6[12]=1=>Locate 14,2,"ATTACK"
+List 6[11]=1=>Locate 14,3,"CURE"
+List 6[10]=1=>Locate 14,4,"NUKE"
+While Getkey=/=31
+C=5=>2->C
+C=1=>4->C
+Locate 13,C,"->"
+If Getkey=37
+Then Locate 13,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate 13,C," "
+Dsz C
+IfEnd
+WhileEnd
+If C=4 And List 6[10]=1
+Then Locate 8,6,"NUKE-HIM"
+0->Q
+L<500=>1->P
+For 1->A To 150
+Next
+Locate 8,6,"        "                                    8 spaces
+For 2->A To 18
+Locate A,6," ."
+Next
+Locate 19,7,")("
+Locate 18,6,"(~~)"
+IfEnd
+Locate 14,1,"HIT"
+Locate 14,2,"MAGIC "
+Locate 14,3,"ITEM"
+Locate 14,4,"RUN "
+2->C
+IfEnd
+If C=3
+Then Locate 14,1,"   "                                   3 spaces
+Locate 14,2,"     "                                      5 spaces
+Locate 14,3,"    "                                       4 spaces
+Locate 14,4,"   "                                        3 spaces
+1->A
+While A<8 And List 6[A]=/=1
+A+1->A
+WhileEnd
+1->B
+While B<8 And List 6[B]=/=3
+B+1->B
+WhileEnd
+List 6[A]=1=>Locate 14,2,"POISON"
+List 6[B]=3=>Locate 14,3,"MEDICINE"
+While Getkey=/=31
+C=4=>2->C
+C=1=>3->C
+Locate 13,C,"->"
+If Getkey=37
+Then Locate 13,C," "
+Isz C
+IfEnd
+If Getkey=28
+then Locate 13,C," "
+Dsz C
+IfEnd
+WhileEnd
+IfEnd
+If C=4
+Then Locate 5,6,"COULDN'T RUN"
+For 1->A To 100
+Next
+Locate 5,6,"            "                               12 spaces
+IfEnd
+If C=1
+Then List 6[8]->W
+W=/=1000 Or L=100=>Q-(11xLxW)->Q
+W=50=>P+(550xL)->P
+If W=1000
+Then Locate 3,6,"I@"
+For 4->A To 19
+Locate A,6,"@"
+Next
+For 1->A To 200
+Next
+Locate 20,6," "
+Locate 30,7,"@"
+For 1->A To 200
+Next
+Locate 20,6,"@"
+Locate 20,7,"A"
+For 19->A To 4 Step -1
+Locate A,6,"@ "
+Next
+Locate 3,6,"   "                                           3 spaces
+IfEnd
+Locate 19,7,"XXX"
+Locate 19,7,"XXX"
+Locate 19,7," A "
+IfEnd
+1->C
+Locate 7,1,"      ->"                                       6 spaces
+Locate 7,2,"       "                                        7 spaces
+Locate 8,3,"      "                                         6 spaces
+Locate 8,4,"      "                                         6 spaces
+Locate 7,1,P
+Locate 7,2,M
+Locate 8,3,L
+Locate 8,4,Q
+If Q>0
+Then For 1->A To 500
+Next
+For 19->A To 3 Step -1
+Locate A,6,". "
+Next
+For 1->A To 50
+Next
+Locate 2,7,")("
+Locate 1,6,"(~~)"
+Stop
+IfEnd
+1->List 6[10]
+ClrText
+Locate 1,1,"ON HIS CORPSE YOU"
+Locate 1,2,"FIND AN ANCIENT"
+Locate 1,3,"PARCHMENT CONTAINING"
+Locate 1,4,"THE SECRET TO THE"
+Locate 1,5,"NUKE, WHICH YOU COPY"
+Locate 1,6,"DOWN."
+For 1->A To 2000
+Next
+ClrText
+Locate 1,1,"A CURIOUS THING"
+Locate 1,2,"HAPPENS. THE"
+Locate 1,3,"PARCHMENT VANISHES AS"
+Locate 1,4,"IF SPIRITED AWAT BY"
+Locate 1,5,"MAGIC..."
+For 1->A To 1000
+Next
+For 1->A To 7
+Locate 1,A,"[]^^^^^^^^^^^(~~~~~~~~"
+Next
+Locate 1,4,"^"
+Locate 2,1,"[][][][][][][][][][][]"                        11 boxes
+Locate 2,7,"[][][][][][][][][][][]"                        11 boxes
+Locate 21,H,"O"
+For 20->G To 13 Step -1
+For 1->A To 50
+Next
+Locate G,H,"O~"
+Next
+For 1->A To 50
+Next
+Locate 12,H,"O("
+12->G
+IfEnd
+1->A
+While List 6[A]=/=6 And A=/=7
+A+1->A
+WhileEnd
+If Getkey=31 And G=11 And List 6[A]=6
+Then Locate G+1,H,"---"
+Int(Ran#x5)->@
+For 5->A To 6+@
+Locate G+A,H,"-"
+Next
+Locate G+A,H+1,"J"
+G+A=18=>H=3=>Locate 2,4,"YOU FOUND THE LEACH"
+G+A=18=>H=3=>Locate 2,5,"SABER."
+For 1->B to 500
+Next
+G+A=18=>H=3=>Locate 2,4,"^^^^^^^^^^^(~~~~J~~~"
+G+A=18=>H=3=>Locate 2,5,"^^^^^"
+G+A=18=>H=3=>50->List 6[8]
+Do
+Int(Ran#x10)->@
+For 1->A To 500
+Next
+LpWhile @=/=3
+Locate 2,4,"YOU CAUGHT A FISH"
+For 1->A To 150
+Next
+1->A
+While List 6[A]=/=0 And A=/=7
+A+1->A
+WhileEnd
+List 6[A]=0=>2->List 6[A]
+For 1->A To 7
+Locate 1,A,"[]^^^^^^^^^^^(~~~~~~~~"
+Next
+Locate 1,4,"^"
+Locate 2,1,"[][][][][][][][][][][]"                         11 boxes
+Locate 2,7,"[][][][][][][][][][][]"                         11 boxes
+IfEnd
+WhileEnd
+20->G
+4->H
+700->A
+
+
+-----------------------------------------------------------
+
+
+
+TOWN
+----------------
+
+Lbl 0
+ClrText
+Locate 1,1,"[][ITEM][][][][][][][     ][]"                 6 boxes in middle
+Locate 1,2,"[][SHOP][][][][][][][ INN ][]"                 6 boxes in middle
+Locate 1,3,"[]--- ---------- ----[]"
+Locate 1,5,"[]---- --------- ----[]"
+Locate 1,6,"[][MAGIC ][][][][WEAPON][]"
+Locate 1,7,"[][ SHOP ][][][][ SHOP ][]"
+Locate 1,4,"[]"
+20->G
+4->H
+1->V
+500->A
+While V=1
+Locate G,H,"O"
+If Getkey=38 And G>2
+Then Locate G,H," "
+G-1->G
+IfEnd
+If Getkey=27
+Then Locate G,H," "
+G+1->G
+IfEnd
+If G=21
+Then 2->V
+IfEnd
+If Getkey=28 And G=5
+Then ClrText
+Locate 1,1,"---------------------"                           21 dashes
+Locate 1,2,"I     ITEM SHOP     I"                           5 spaces then 5
+Locate 1,3,"---------------------"
+Locate 3,4,"BUY"
+Locate 3,5,"SELL"
+Locate 3,6,"EXIT"
+2->D
+4->C
+1->X
+While X=1
+3=C=>6->C
+7=C=>4->C
+Locate D,C,"->"
+If Getkey=37
+Then Locate D,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate D,C," "
+Dsz C
+IfEnd
+If Getkey=31 And C=6
+Then 2->X
+600->A
+IfEnd
+IF Getkey=31 And C=5
+Then Prog "ID"
+1->C
+While Getkey=/=47 And Getkey=/=31
+C=0=>7->C
+C=8=>1->C
+Locate 1,C,"->"
+If Getkey=37
+Then Lcate 1,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate 1,C," "
+Dsz C
+IfEnd
+WhileEnd
+Getkey=47=>0->C
+C=/=0=>List 6[C]=/=0=>F+1->F
+C=/=0=>List 6[C]=/=0=>0->List 6[C]
+ClrText
+4->C
+Locate 1,1,"---------------------"
+Locate 1,2,"I     ITEM SHOP     I"
+Locate 1,3,"---------------------"
+Locate 3,4,"BUY"
+Locate 3,5,"SELL"
+Locate 3,6,"EXIT"
+IfEnd
+If Getkey=31 And C=4
+Then Int(5xRan#+1)->I
+Locate 1,2,"BUY THIS "
+I=1=>Locate 10,2,"POISON?     "                             5 spaces
+I=2=>Locate 10,2,"FOOD?       "                             7 spaces
+I=3=>Locate 10,2,"MEDICINE?   "                             3 spaces
+I=4=>Locate 10,2,"MAGIC BOOK? "                             1 space
+I=5=>6->I
+I=6=>Locate 10,2,"FISHING POLE?"
+Locate 2,4,"    "                                           4 Spaces
+Locate 2,5,"YES  "                                          2 spaces
+Locate 2,6,"NO   "                                          3 spaces
+5->C
+While Getkey=/=31
+C=7=>5->C
+C=4=>6->C
+Locate 1,C,"->"
+If Getkey=28
+Then Locate 1,C," "
+Isz C
+IfEnd
+If Getkey=37
+Then Locate 1,C," "
+Dsz C
+IfEnd
+WhileEnd
+1->A
+While List 6[A]=/=0 And A=/=7
+A+1->A
+WhileEnd
+If C=5 And F<100xI
+Then Locate 3,7," NOT ENOUGH GOLD"
+For 1->A To 150
+Next
+Locate 3,7,"               "                                15 spaces
+IfEnd
+F>=100xI=>C=5=>List 6[A]=0=>I->List 6[A]
+F>=100xI=>C=5=>F-100xI->F
+Locate 1,2,"I     ITEM SHOP     I"
+Locate 1,4,"  BUY                "
+Locate 1,5,"  SELL               "
+Locate 1,6,"  EXIT               "
+IfEnd
+WhileEnd
+ClrText
+IfEnd
+If Getkey=37 And G=6
+Then ClrText
+Locate 1,1,"---------------------"
+Locate 1,2,"I    MAGIC SHOP     I"
+Locate 1,3,"---------------------"
+Locate 3,4,"BUY"
+Locate 3,5,"EXIT"
+2->D
+4->C
+1->X
+While X=1
+While Getkey=/=31
+3=C=>5->C
+6=C=>4->C
+Locate D,C,"->"
+If Getkey=37
+Then Locate D,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate D,C," "
+Dsz C
+IfEnd
+WhileEnd
+If C=4
+Then Locate 3,4,"ATTACK 1000 G.P."
+Locate 3,3,"CURE 1000 G.P."
+While Getkey=/=31 And Getkey=/=47
+C=3=>5->C
+C=6=>4->C
+Locate 2,C,"->"
+If Getkey=37
+Then Locate 2,C," "
+C+1->C
+IfEnd
+If Getkey=28
+Then Locate 2,C," "
+C-1->C
+IfEnd
+WhileEnd
+Getkey=47=>Locate 2,C," "
+Getkey=47=>1->C
+If (C=5 Or C=4) And F<1000
+Then Locate 3,C,"NOT ENOUGH GOLD"
+For 1->A To 150
+Next
+IfEnd
+If C=4 And F>=1000 And List 6[12]=0
+Then Locate 2,C," "
+F-1000->F
+1->List 6[12]
+IfEnd
+If C=5 And F>=1000 And List 6[11]=0
+Then Locate 2,C," "
+F-1000->F
+1->List 6[11]
+IfEnd
+Locate 2,4," BUY               "                           15 spaces
+Locate 2,5," SELL              "                           14 spaces
+4->C
+IfEnd
+If C=5
+Then 2->X
+600->A
+IfEnd
+WhileEnd
+ClrText
+IfEnd
+If Getkey=37 And G=16
+Then ClrText
+Locate 1,1,"---------------------"
+Locate 1,2,"I    WEAPON SHOP    I"
+Locate 1,3,"---------------------"
+Locate 3,4,"BUY"
+Locate 3,5,"SELL"
+Lcoate 3,6,"EXIT"
+2->D
+4->C
+1->X
+While X=1
+3=C=>6->C
+7=C=>4->C
+Locate D,C,"->"
+If Getkey=37
+Then Locate D,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate D,C," "
+Dsz C
+IfEnd
+If Getkey=31 And C=4
+Then Locate 3,4,"   "                                     3 spaces
+Locate 3,5,"    "                                         4 spaces
+locate 3,6,"    "                                         4 spaces
+Int(4Ran#+2)->I
+Int(3Ran#+1)->B
+(B/4)->B
+I=2=>Locate 3,4,"CLUB"
+I=3=>Locate 3,4,"SPEAR"
+I=4=>Locate 3,4,"SHORT SWORD"
+I=5=>Locate 3,4,"LONG SWORD"
+B=.75=>Locate 3,5,"LEATHER ARMOR"
+B=.5=>Locate 3,5,"CHAIN MAIL"
+B=.25=>Locate 3,5,"PLATE MAIL"
+Locate 14,4,Ix100
+Locate 18,4,"G.P."
+Locate 6,6,100000-(100000xB)
+Locate 12,6,"G.P."
+While Getkey=/=31 And Getkey=/=47
+C=3=>5->C
+C=6=>4->C
+Locate 2,C,"->"
+If Getkey=37
+Then Locate 2,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate 2,C," "
+Dsz C
+IfEnd
+WhileEnd 
+Locate 2,C," "
+Getkey=47=>1-C
+If (F<100xI And C=40 Or (F<100000-100000xB And C=5)
+Then Locate 3,C,"NOT ENOUGH GOLD    "
+For 1->C To 500
+Next
+IfEnd
+If F>=100xI And C=4 And List 6[8]=1
+Then F-100xI->F
+I->List 6[8]
+IfEnd
+If F>=100000-100000xB And C=5 And List 6[9]=1
+Then B->List 6[9]
+F-(100000-100000xB)->F
+IfEnd
+Locate 3,4,"BUY               "                                15 spaces
+Locate 3,5,"SELL              "                                14 spaces
+Locate s,6,"EXIT              "                                14 spaces
+Locate 1,1,"---------------------"
+4->C
+IfEnd
+If Getkey=31 And C=5
+Then List 6[9]=.75=>Locate 3,5,"LEATHER ARMOR"
+List 6[9]=.5=>Locate 3,5,"CHAIN MAIL"
+List 6[9]=.25=>Locate 3,5,"PLATE MAIL"
+List 6[9]=0=>Locate 3,5,"ENCHANTED ARMOR"
+List 6[8]=2=>Locate 3,4,"CLUB"
+List 6[8]=3=>Locate 3,4,"SPEAR"
+List 6[8]=4=>Locate 3,4,"SHORT SWORD"
+List 6[8]=5=>Locate 3,4,"LONG SWORD"
+List 6[8]=50=>Locate 3,4,"LEACH SABRE"
+List 6[8]=1000=>Locate 3,4,"MEGA-MACE"
+List 6[8]=1=>Locate 3,4,"        "                             8 spaces
+List 6[9]=1=>Locate 3,5,"        "                             8 spaces
+Locate 3,6,"    "                                              4 spaces
+While Getkey=/=47 and Getkey=/=31
+C=3=>5->C
+C=6=>4->C
+Locate 2,C,"->"
+If Getkey=37
+Then lcoate 2,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate 2,C," "
+Dsz C
+IfEnd
+WhileEnd
+Locate 2,C," "
+Getkey=47=>1->C
+C=4 Or C=5=>List 6[C+4]=/=1=>F+1->F
+C=4 Or C=5=>List 6[C+4]=/=1=>1->List 6[C+4]
+Locate 3,4,"BUY               "                                 15 spaces
+Locate 3,5,"SELL              "                                 14 spaces
+Locate 3,6,"EXIT              "                                 14 spcaes
+Locate 1,1,"---------------------"
+4->C
+IfEnd
+If Getkey=31 And C=6
+Then 2->X
+600->A
+IfEnd
+WhileEnd
+ClrText
+IfEnd
+If Getkey=28 And G=16
+Then ClrText
+Locate 1,1,"---------------------"
+Locate 1,2,"I        INN        I"                            8 spaces then 8
+Locate 1,3,"---------------------"
+Locate 3,4,"REST"
+Lcoate 3,5,"EXIT"
+2->D
+4->C
+1->X
+While X=1
+3=C=>5->C
+6=C=>4->C
+Locate D,C,"->"
+If Getkey=37
+Then Locate D,C," "
+Isz C
+IfEnd
+If Getkey=28
+Then Locate D,C," "
+Dsz C
+IfEnd
+If Getkey=31 And C=5
+Then 2->X
+600->A
+IfEnd
+If C=4 And F<100 And Getkey=31
+Then Locate 3,C,"NOT ENOUGH GOLD"
+For 1->A To 150
+Next
+Locate 3,C,"REST           "                                 11 spaces
+IfEnd
+If F>=100 And Getkey=31 And C=4
